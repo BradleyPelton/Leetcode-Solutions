@@ -1,4 +1,5 @@
 from typing import List
+from connections import Counter
 
 class Solution:
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
@@ -12,6 +13,7 @@ class Solution:
             super_list += con
         print(super_list)
         
+        mylist = list(Counter())
 
 
 
