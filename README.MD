@@ -3,7 +3,7 @@
 CURRENT GLOBAL RANKING (as of 2020-05-05):
 40809 / 93873 (of active participants)
 
-![Graph of Ranks]("https://github.com/BradleyPelton/Leetcode-Solutions/percentilechart.png)
+![Graph of Ranks](https://github.com/BradleyPelton/Leetcode-Solutions/percentilechart.png)
 
 ## TOP FINISHES
 - 04/18 weekly contest  RANK: 2855 / 14208, PERCENTILE: 79.905
