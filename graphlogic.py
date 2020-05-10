@@ -1,4 +1,3 @@
-import pandas as pd
 from matplotlib import pyplot as plt
 import matplotlib.dates as mdates
 import datetime
@@ -35,8 +34,8 @@ percentiles = [result[1] for result in results]
 
 plt.plot(dates_formated, percentiles)
 plt.xlabel('competition date')
-plt.ylabel('Rank(Percentile)')
-plt.legend(["Rank(as a percentile)"])
+plt.ylabel('Competition Rank(Percentile)')
+plt.legend(['Competition Rank(Percentile)'])
 plt.axhline(y=50, color='r', linestyle='-')
 axes = plt.gca()
 # axes.set_xlim([xmin,xmax])
