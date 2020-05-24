@@ -1,7 +1,7 @@
 # My Leetcode solutions 
 
-CURRENT GLOBAL RANKING (as of 2020-05-05):
-40809 / 93873 (of active participants)
+CURRENT GLOBAL RANKING (as of 2020-05-24):
+46944 / 99851 (of active participants)
 
 ![Graph of Ranks](https://github.com/BradleyPelton/Leetcode-Solutions/blob/master/percentilechart.png)
 
@@ -11,6 +11,7 @@ CURRENT GLOBAL RANKING (as of 2020-05-05):
 - 03/28 weekly contest  RANK: 2756 / 11695 PERCENTILE: 76.434
 
 ## RECENT FINISHES
+- 05/23 weekly contest   RANK: 5331 / 11873, PERCENTILE: 55.109
 - 05/16 weekly contest   RANK: 4277 / 13036, PERCENTILE: 67.190
 - 05/16 biweekly contest RANK: 4496 / 7795, PERCENTILE: 42.322
 - 05/09 weekly contest   RANK: 6956 / 12717, PERCENTILE: 45.301
