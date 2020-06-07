@@ -4,6 +4,9 @@ import datetime
 
 
 results = [
+    ['06/06', 64.367],
+    ['05/30', 64.526],
+    ['05/30', 41.521],
     ['05/23', 55.109],
     ['05/16', 67.190],
     ['05/16', 42.322],
@@ -44,5 +47,6 @@ plt.axhline(y=50, color='r', linestyle='-')
 axes = plt.gca()
 # axes.set_xlim([xmin,xmax])
 axes.xaxis.set_major_locator(mdates.DayLocator(interval=21))
+axes.xaxis.set_tick_params(rotation=320)  # Rotate the x axis markers
 axes.set_ylim([0, 100])
 plt.show()
