@@ -9,16 +9,19 @@ class Solution:
         subs_and_indexes = []
 
         current_sum = 0
-        current_left = 0
-        current_right = 0
+        current_left = 0  # INCLUSIVE
+        current_right = 0  # INCLUSIVE
 
         for _ in range(1000):
-            print(current_sum, current_left, current_right)
+            # print(f"current window is {arr[current_left:current_right + 1]}, current sum is {current_sum}")
             if current_sum == target:
-                print(f"found a subarray that works, {arr[current_left:current_right]}")
-                subs_and_indexes.append([arr[current_left:current_right], current_left, current_right])
+                print(f"found a subarray that works, {arr[current_left:current_right + 1]}")
+                subs_and_indexes.append(
+                    [arr[current_left:current_right], current_left, current_right]
+                )
 
                 if current_right == len(arr) - 1:
+                    print("breaking: current_sum == target break")
                     break
                 else:
                     current_right += 1
@@ -30,11 +33,10 @@ class Solution:
                 current_left += 1
                 pass
             elif current_sum < target:
-                if current_right == len(arr) - 1:
+                if current_right > len(arr) - 1:
                     break
-                else:
-                    current_right += 1
-                    current_sum += arr[current_right]
+                current_right += 1
+                current_sum += arr[current_right]
 
         print(subs_and_indexes)
 
@@ -56,5 +58,5 @@ class Solution:
 
 a = Solution()
 # a.minSumOfLengths([3,2,2,4,3], 3)
-a.minSumOfLengths([7,3,4,7], 7)
-# a.minSumOfLengths([3,1,1,1,5,1,2,1], 3)
+# a.minSumOfLengths([7,3,4,7], 7)
+a.minSumOfLengths([3,1,1,1,5,1,2,1], 3)
