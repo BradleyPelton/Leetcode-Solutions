@@ -4,6 +4,14 @@ import datetime
 
 
 results = [
+    ['07/11', 68.907],
+    ['07/11', 61.688],
+    ['07/04', 53.835],
+    ['06/27', 89.589],
+    ['06/27', 49.306],
+    ['06/20', 52.984],
+    ['06/13', 60.555],
+    ['06/13', 50.134],
     ['06/06', 64.367],
     ['05/30', 64.526],
     ['05/30', 41.521],
@@ -31,7 +39,7 @@ results = [
     ['02/15', 59.215],
     ['02/08', 33.405],
     ['02/08', 33.929],
-    ['02/01', 40.488]
+    ['02/01', 40.488],
 ]
 
 dates = [result[0] for result in results]
@@ -43,6 +51,7 @@ plt.plot(dates_formated, percentiles)
 plt.xlabel('competition date')
 plt.ylabel('Competition Rank(Percentile)')
 plt.legend(['Competition Rank(Percentile)'])
+plt.gcf().subplots_adjust(bottom=0.15)
 plt.axhline(y=50, color='r', linestyle='-')
 axes = plt.gca()
 # axes.set_xlim([xmin,xmax])
