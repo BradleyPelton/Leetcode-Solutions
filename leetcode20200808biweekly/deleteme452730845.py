@@ -1,4 +1,36 @@
 
+
+
+
+
+def rev(list):
+    prev = None
+    curr = list.head
+    next = curr.next
+
+    while curr:
+        curr.next = prev
+        prev = curr
+        curr = next
+        if curr is None:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Depth first search
 
 class Solution():
@@ -50,3 +82,7 @@ def reverseList(list):
           following = following.next    # move `following` one step ahead
 
   list.head = previous
+
+
+
+
