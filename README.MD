@@ -1,6 +1,6 @@
 # My Leetcode solutions 
 
-CURRENT GLOBAL RANKING: 31283 / 123993 (of active participants)(last updated 2020-8-30)
+CURRENT GLOBAL RANKING: 21907 / 125037 (of active participants)(last updated 2020-09-05)
 
 ![Graph of Ranks](https://github.com/BradleyPelton/Leetcode-Solutions/blob/master/percentilechart.png)
 
