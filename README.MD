@@ -4,6 +4,7 @@
 - My rank is going to plummit while I learn how to competetively complete Java solutions.
 - I pray the "Sun" gods are kind to me 
 
+
 HIGHEST ACHIEVED GLOBAL RANKING: 21907 / 125037 (of active participants)(last updated 2020-09-05)
 
 ![Graph of Ranks](https://github.com/BradleyPelton/Leetcode-Solutions/blob/master/percentilechart.png)
