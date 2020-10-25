@@ -5,13 +5,19 @@
 - I pray the "Sun" gods are kind to me 
 
 
+
+# JAVA SOLTIONS AND RESULTS
+- (TODO - Add results here)
+
+
+
+# PYTHON SOLUTIONS AND RESULTS
 HIGHEST ACHIEVED GLOBAL RANKING: 21907 / 125037 (of active participants)(last updated 2020-09-05)
 
 ![Graph of Ranks](https://github.com/BradleyPelton/Leetcode-Solutions/blob/master/percentilechart.png)
 
 
 
-# PYTHON SOLUTIONS AND RESULTS
 ## TOP FINISHES
 - 08/29 weekly contest   RANK: 1596 / 13949, PERCENTILE: 88.558
 - 04/18 weekly contest  RANK: 2855 / 14208, PERCENTILE: 79.905
