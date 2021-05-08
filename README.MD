@@ -2,12 +2,13 @@
 ### NOTICE
 - Since I was blessed with the honor of a new job, I will be switching from python to Java. 
 - My rank is going to plummit while I learn how to competetively complete Java solutions.
-- I pray the "Sun" gods are kind to me 
+- I pray the "Sun" gods are kind to me
 
 
 
 # JAVA SOLTIONS AND RESULTS
 - (TODO - Add results here)
+- Ranking as of 2021-05-07:  56,040
 
 
 
