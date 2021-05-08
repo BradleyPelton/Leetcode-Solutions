@@ -4,7 +4,7 @@
 # I struggled with nonlocal again. I wonder if the optimal solution passes total_sum as a param to
 # the dfs function or if the nonlocalize the variable like I did
 
-class Solution:
+class contests2020q4.leetcode20201017.Solution:
     def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
         total_sum = 0
 

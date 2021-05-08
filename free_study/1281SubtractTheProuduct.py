@@ -1,7 +1,7 @@
 # Accepted after first attempt
 
 
-class Solution:
+class contests2020q4.leetcode20201017.Solution:
     def subtractProductAndSum(self, n: int) -> int:
         
 
@@ -20,5 +20,5 @@ class Solution:
         return total_product - total_sum
 
 
-a = Solution()
+a = contests2020q4.leetcode20201017.Solution()
 a.subtractProductAndSum(4421)

@@ -3,7 +3,7 @@ from typing import List
 
 ## Accepted after first attempt
 
-class Solution:
+class contests2020q4.leetcode20201017.Solution:
     def decompressRLElist(self, nums: List[int]) -> List[int]:
         """ """
         deco_list = []
@@ -14,6 +14,6 @@ class Solution:
         
         return deco_list
 
-a = Solution()
+a = contests2020q4.leetcode20201017.Solution()
 a.decompressRLElist([1,2,3,4])
 a.decompressRLElist([1,1,2,3])

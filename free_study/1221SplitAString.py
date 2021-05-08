@@ -11,7 +11,7 @@
 
 
 
-# class Solution:
+# class contests2020q4.leetcode20201017.Solution:
 #     def balancedStringSplit(self, s: str) -> int:
 #         """ """
 
@@ -32,7 +32,7 @@
 #         # print(total_count)
 #         return total_count
 
-# class Solution:
+# class contests2020q4.leetcode20201017.Solution:
 #     def balancedStringSplit(self, s: str) -> int:
 #         """ """
 
@@ -56,7 +56,7 @@
 
 
 
-a = Solution()
+a = contests2020q4.leetcode20201017.Solution()
 a.balancedStringSplit(s = "RLRRLLRLRL")
 a.balancedStringSplit(s = "RLLLLRRRLR")
 a.balancedStringSplit(s = "LLLLRRRR")

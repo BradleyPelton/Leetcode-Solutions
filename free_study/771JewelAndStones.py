@@ -1,7 +1,7 @@
 # Accepted first attempt
 
 
-class Solution:
+class contests2020q4.leetcode20201017.Solution:
     def numJewelsInStones(self, J: str, S: str) -> int:
         """ """
 
@@ -14,6 +14,6 @@ class Solution:
         print(jewel_count)
         return jewel_count
 
-a = Solution()
+a = contests2020q4.leetcode20201017.Solution()
 a.numJewelsInStones(J = "aA", S = "aAAbbbb")
 a.numJewelsInStones(J = "z", S = "ZZ")
