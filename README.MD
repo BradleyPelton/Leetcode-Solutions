@@ -1,6 +1,20 @@
-# My Leetcode solutions 
+
+
+# UPDATE
+- All of this is outdated from 2021. Will clean this up.
+
+
+
+
+
+
+
+
+
+
+# My Leetcode solutions
 ### NOTICE
-- Since I was blessed with the honor of a new job, I will be switching from python to Java. 
+- Since I was blessed with the honor of a new job, I will be switching from python to Java.
 - My rank is going to plummit while I learn how to competetively complete Java solutions.
 - I pray the "Sun" gods are kind to me
 
