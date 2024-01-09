@@ -31,16 +31,16 @@ class Solution {
             projects[i] = new int[]{profits[i], capital[i]};
         }
         Arrays.sort(projects, Comparator.comparingInt(a -> a[1])); // sort by capital requirement
-        PriorityQueue<int[]> projectQueue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        PriorityQueue<int[]> projectQueue = new PriorityQueue<>(Comparator.comparingInt(a -> -a[0]));
 
         int currCapital = w;
         int nextIndex = 0;
         for (int i = 0; i < n; i++) {
             if (projects[i][1] <= currCapital) {
                 nextIndex = i + 1;
-                if (projects[i][0] - projects[i][1] > 0) {
+//                if (projects[i][0] - projects[i][1] > 0) {
                     projectQueue.add(projects[i]);
-                }
+//                }
                 // else  skip this worthless project
             } else {
                 break;
@@ -57,9 +57,9 @@ class Solution {
             for (int i = nextIndex; i < n; i++) {
                 if (projects[i][1] <= currCapital) {
                     nextIndex = i + 1;
-                    if (projects[i][0] - projects[i][1] > 0) {
+//                    if (projects[i][0] - projects[i][1] > 0) {
                         projectQueue.add(projects[i]);
-                    }
+//                    }
                     // else  skip this worthless project
                 } else {
                     break;
@@ -76,17 +76,23 @@ class Solution {
 class Tests {
     public static void main(String[] args) {
         Solution sol = new Solution();
+//        sol.findMaximizedCapital(
+//                2,
+//                0,
+//                new int[]{1,2,3},
+//                new int[]{0,1,1}
+//        );
+//        sol.findMaximizedCapital(
+//                3,
+//                0,
+//                new int[]{1,2,3},
+//                new int[]{0,1,2}
+//        );
         sol.findMaximizedCapital(
-                2,
-                0,
+                11,
+                11,
                 new int[]{1,2,3},
-                new int[]{0,1,1}
-        );
-        sol.findMaximizedCapital(
-                3,
-                0,
-                new int[]{1,2,3},
-                new int[]{0,1,2}
+                new int[]{11,12,13}
         );
     }
 }

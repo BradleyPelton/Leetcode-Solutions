@@ -1,4 +1,4 @@
-package _Study.Problems.MaximumLengthOfRepeatedSubarray;
+package _Study.Problems.maximumLengthOfRepeatedSubarray;
 
 /**
  * 718. Maximum Length of Repeated Subarray

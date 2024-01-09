@@ -1,4 +1,4 @@
-package leetcode20200926MediumProblemTwo;
+package contests.contests2020.contests2020q3.leetcode20200926.leetcode20200926MediumProblemTwo;
 
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ class ThroneInheritance {
     }
 
     public List<String> getInheritanceOrder() {
-
+        return null;
     }
 }
 

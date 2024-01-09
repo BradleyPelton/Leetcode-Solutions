@@ -1,4 +1,4 @@
-package _Study.Problems.DesignAddAndSearchWordsDataStructure;
+package _Study.Problems.designAddAndSearchWordsDataStructure;
 
 /**
  * 211. Design Add and Search Words Data Structure

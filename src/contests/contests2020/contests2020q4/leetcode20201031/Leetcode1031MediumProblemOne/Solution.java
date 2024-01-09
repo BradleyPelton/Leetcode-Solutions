@@ -13,13 +13,13 @@ class Solution {
 
             }
         }
+        return null;
 
     }
     public int countVowelStrings(int n) {
 
         String[] vowels = {"a","e","i","o","u"};
 
-        for
 
         return 5;
         // {aaa, aae, aai, aao, aau, aee}
@@ -57,25 +57,5 @@ class Solution {
 
         // f(n)  = 3(f(n-1))
 
-        [1,1,1,1,1]
-        [5,4,3,2,1]
-        [25,16,9,4,1]
-        [125,64,27,8,1]
-
-        [1,1,1,1,1]
-        [5,4,3,2,1]
-
-36/15
-        2.5(n-1)
-            f(n) = 5/2*(n-1_
-//        [n]
-//        [n new "a"s, ] 15/15
-//         [e] = 10/15
-        // [i] = 6/15
-        // [o] = 3/15
-        // [e] = 1/15
-
-        // the number of "a" strings is getting multiplied by 5 every round
-        // the number of "e" strings is getting multiplied by 4 every round
     }
 }

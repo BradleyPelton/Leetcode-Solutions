@@ -65,6 +65,6 @@ class Solution {
 //        int[][] lastExample = {{0,0,0,0,0},{1,0,0,0,0},{0,1,0,0,0},{0,0,1,0,0},{0,0,0,1,1}};
 //        int c = numSpecial(lastExample);
 //        System.out.println(c);
-        int[][] otherExample = int[[0,0,0,1],[1,0,0,0],[0,1,1,0],[0,0,0,0]]
+//        int[][] otherExample = int[[0,0,0,1],[1,0,0,0],[0,1,1,0],[0,0,0,0]]
     }
 }

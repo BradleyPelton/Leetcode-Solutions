@@ -1,4 +1,4 @@
-package contests2020q4.leetcode20201212biweekly.leetcode20201212mediumtwo;
+package contests.contests2020.contests2020q4.leetcode20201212biweekly.leetcode20201212mediumtwo;
 
 
 import java.util.Arrays;
@@ -83,7 +83,7 @@ class Solution {
 
 class Tests{
     public static void main(String[] args){
-        contests2020q4.leetcode20201212.leetcode20201212mediumtwo.Solution sol = new contests2020q4.leetcode20201212.leetcode20201212mediumtwo.Solution();
+        Solution sol = new Solution();
 
         int[] aliceOne = {1,3};
         int[] bobOne = {2,1};

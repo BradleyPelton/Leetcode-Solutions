@@ -87,12 +87,5 @@ class Solution {
 
 class Test {
   public static void main(String[] args) {
-    contests2020q4.leetcode20201212.leetcode20201212mediumone.Solution sol = new contests2020q4.leetcode20201212.leetcode20201212mediumone.Solution();
-
-    int[] firstNums = {2,3,5};
-    int[] secondNums = {1,4,6,8,10};
-
-      sol.getSumAbsoluteDifferences(firstNums);
-      sol.getSumAbsoluteDifferences(secondNums);
   }
 }

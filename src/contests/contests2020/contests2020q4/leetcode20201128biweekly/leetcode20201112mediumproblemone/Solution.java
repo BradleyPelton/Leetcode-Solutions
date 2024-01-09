@@ -8,6 +8,8 @@ package contests2020q4.leetcode20201128biweekly.leetcode20201112mediumproblemone
 // The stupid values werent updating in the second loop. They were updating fine in the first loop though. IDK
 
 
+import util.ListNode;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {

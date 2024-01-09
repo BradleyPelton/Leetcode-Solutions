@@ -1,6 +1,5 @@
-package leetcode0919part2;
+package contests.contests2020.contests2020q3.leetcode20200919biweekly.leetcode0919part2;
 
-import sun.security.util.ArrayUtil;
 
 
 // I ran out of time even though I knew how to find the solution.
@@ -44,7 +43,7 @@ class Solution {
         int[] numsCopy = nums.clone();
         System.out.println("numsCopy before sort" + Arrays.toString(numsCopy));
         List<int[]> temppp = Arrays.asList(numsCopy);
-        List<> sortedArr = Collections.reverse(temppp);
+//        List<> sortedArr = Collections.reverse(temppp);
 //        Arrays.sort(sortedArr);
         System.out.println("numsCopy after sort" + Arrays.toString(numsCopy));
 
