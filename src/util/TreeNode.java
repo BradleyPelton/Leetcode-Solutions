@@ -1,5 +1,8 @@
 package util;
 
+import com.sun.source.tree.Tree;
+
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,35 +31,80 @@ public class TreeNode {
     }
 
     public static TreeNode fromArray(Integer[] arr) {
-        if (arr.length == 0) return null;
+        if (arr.length == 0) {
+            return null;
+        }
+        if (arr[0] == null) {
+            throw new IllegalArgumentException("first node is null");
+        }
 
-        List<Optional<TreeNode>> level = new ArrayList<>();
-        List<Optional<TreeNode>> newLevel = new ArrayList<>();
-        int arrPos = 0;
-        TreeNode root = fromInteger(arr[0]);
+        TreeNode root = new TreeNode(arr[0]);
+        int arrIndex = 1;
 
-        level.add(Optional.ofNullable(root));
-
-        while (!level.isEmpty()) {
-            int levelStartPos = arrPos;
-            for (Optional<TreeNode> n : level) {
-                if (n.isPresent()) {
-                    int leftChildPos = levelStartPos + level.size() + newLevel.size();
-                    int rightChildPos = leftChildPos + 1;
-                    if (rightChildPos >= arr.length) break;
-                    n.get().left = fromInteger(arr[leftChildPos]);
-                    newLevel.add(Optional.ofNullable(n.get().left));
-                    n.get().right = fromInteger(arr[rightChildPos]);
-                    newLevel.add(Optional.ofNullable(n.get().right));
+        Queue<TreeNode> nodesToModify = new ArrayDeque<>();
+        nodesToModify.add(root);
+        OUTER_LOOP:
+        while (true) {
+            int size = nodesToModify.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode currNode = nodesToModify.remove();
+                // LEFT
+                // every node has both children listed explicitly in the arr
+                Integer leftVal = arr[arrIndex];
+                arrIndex++;
+                if (leftVal != null) {
+                    TreeNode newLeft = new TreeNode(leftVal);
+                    currNode.left = newLeft;
+                    nodesToModify.add(newLeft);
                 }
-                arrPos++;
+                if (arrIndex == arr.length) {break OUTER_LOOP;}
+
+                // RIGHT
+                Integer rightVal = arr[arrIndex];
+                arrIndex++;
+                if (rightVal != null) {
+                    TreeNode newRight = new TreeNode(rightVal);
+                    currNode.right = newRight;
+                    nodesToModify.add(newRight);
+                }
+                if (arrIndex == arr.length) {break OUTER_LOOP;}
+
             }
-            level = newLevel;
-            newLevel = new ArrayList<>();
         }
 
         return root;
     }
+
+//    public static TreeNode fromArray(Integer[] arr) { // TODO - POSSIBLE BUG. DUPLICATE NODE
+//        if (arr.length == 0) return null;
+//
+//        List<Optional<TreeNode>> level = new ArrayList<>();
+//        List<Optional<TreeNode>> newLevel = new ArrayList<>();
+//        int arrPos = 0;
+//        TreeNode root = fromInteger(arr[0]);
+//
+//        level.add(Optional.ofNullable(root));
+//
+//        while (!level.isEmpty()) {
+//            int levelStartPos = arrPos;
+//            for (Optional<TreeNode> n : level) {
+//                if (n.isPresent()) {
+//                    int leftChildPos = levelStartPos + level.size() + newLevel.size();
+//                    int rightChildPos = leftChildPos + 1;
+//                    if (rightChildPos >= arr.length) break;
+//                    n.get().left = fromInteger(arr[leftChildPos]);
+//                    newLevel.add(Optional.ofNullable(n.get().left));
+//                    n.get().right = fromInteger(arr[rightChildPos]);
+//                    newLevel.add(Optional.ofNullable(n.get().right));
+//                }
+//                arrPos++;
+//            }
+//            level = newLevel;
+//            newLevel = new ArrayList<>();
+//        }
+//
+//        return root;
+//    }
 
     public String serialize() {
         // SEE https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/
@@ -64,28 +112,26 @@ public class TreeNode {
         TreeNode root = this;
         List<Integer> serializedTree = new ArrayList<>();
 
-        if (root != null) {
-            Queue<TreeNode> nodesToSerialize = new LinkedList<>();
-            nodesToSerialize.add(root);
-            while (!nodesToSerialize.isEmpty()) {
-                boolean nextLevelIsAllNullValues = true;
-                int size = nodesToSerialize.size();
-                for (int i = 0; i < size; i++) {
-                    TreeNode nextNode = nodesToSerialize.remove();
-                    if (nextNode == null) {
-                        serializedTree.add(null);
-                    } else {
-                        serializedTree.add(nextNode.val);
-                        if (nextNode.left != null || nextNode.right != null) {
-                            nextLevelIsAllNullValues = false;
-                        }
-                        nodesToSerialize.add(nextNode.left);
-                        nodesToSerialize.add(nextNode.right);
+        Queue<TreeNode> nodesToSerialize = new LinkedList<>();
+        nodesToSerialize.add(root);
+        while (!nodesToSerialize.isEmpty()) {
+            boolean nextLevelIsAllNullValues = true;
+            int size = nodesToSerialize.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode nextNode = nodesToSerialize.remove();
+                if (nextNode == null) {
+                    serializedTree.add(null);
+                } else {
+                    serializedTree.add(nextNode.val);
+                    if (nextNode.left != null || nextNode.right != null) {
+                        nextLevelIsAllNullValues = false;
                     }
+                    nodesToSerialize.add(nextNode.left);
+                    nodesToSerialize.add(nextNode.right);
                 }
-                if (nextLevelIsAllNullValues) {
-                    break;
-                }
+            }
+            if (nextLevelIsAllNullValues) {
+                break;
             }
         }
 
@@ -93,9 +139,9 @@ public class TreeNode {
         return ansString;
     }
 
-//    public String toString() { // TODO - Buggy when there are null values.
-//        return serialize();
-//    }
+    public String toString() {
+        return serialize();
+    }
 
     private static TreeNode fromInteger(Integer i) {
         return i == null ? null : new TreeNode(i);
