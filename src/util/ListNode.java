@@ -1,5 +1,8 @@
 package util;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ListNode {
     public int val;
     public ListNode next;
@@ -32,7 +35,24 @@ public class ListNode {
         System.out.println();
     }
 
+    public String serialize() {
+        Set<Integer> valsSeen = new HashSet<>();
+        StringBuilder sb = new StringBuilder();
+        ListNode head = this;
+        while (head != null) {
+            sb.append(head.val).append("->");
+            if (valsSeen.add(head.val)) {
+                head = head.next;
+            } else {
+                sb.append("{{{CYCLE_DETECTED}}}");
+                return sb.toString();
+            }
+        }
+        sb.append("null");
+        return sb.toString();
+    }
+
     public String toString() {
-        return Integer.toString(val) + (next == null ? "(->null" : "(->" + next.val);
+        return serialize();
     }
 }

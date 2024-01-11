@@ -1,5 +1,7 @@
 package contests2020q4.leetcode20201003a.attempt1MediumProblem;
 
+import util.TreeNode;
+
 import java.util.ArrayList;
 
 // Almost had it. First attempt submited with 2 minutes left to go

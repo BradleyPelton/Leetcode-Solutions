@@ -53,8 +53,8 @@ class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode reversedSublist = reverseListRECURSIVE1(head.next); // reverse everything to the right first. 1 -> (2 <- 3 <- 4 <- 5)
-        head.next.next = head; // 1 -> (<- 2 <- 3 <- 4 <- 5)
+        ListNode reversedSublist = reverseListRECURSIVE1(head.next); // reverse everything to the right first. (null <- 2 <- 3 <- 4 <- 5)
+        head.next.next = head; // (1 <- 2)
         head.next = null; // null <- 1 (<- 2 <- 3 <- 4 <- 5)
         return reversedSublist;
     }
