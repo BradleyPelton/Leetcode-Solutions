@@ -29,7 +29,7 @@ class Solution {
         }
 
         while (!listPQ.isEmpty()) {
-            int[] nextArr = listPQ.poll();
+            int[] nextArr = listPQ.remove();
             ListNode nextNode = lists[nextArr[1]];
 
             // Update Head

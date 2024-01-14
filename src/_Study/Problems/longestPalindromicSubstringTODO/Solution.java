@@ -17,10 +17,13 @@ import java.util.Arrays;
  *
  * </p>
  *
- * // TODO - Do the DP approach here.
+ *
+ * Trivia: There is a hyper efficient (Linear Big O(n)) solution using a niche algorithm known as
+ * Manacher's algorithm ( see https://en.wikipedia.org/wiki/Longest_palindromic_substring#Manacher's_algorithm )
+ * Out of scope.
  */
 class Solution {
-    public String longestPalindromeExpandFromCenter(String s) {
+    public String longestPalindromeEXPANDFROMCENTER(String s) {
         String longestSubstring = "";
 
         for (int i = 0; i < s.length(); i++) {
@@ -76,6 +79,57 @@ class Solution {
         }
         System.out.println("ans = " + longestSubstring);
         return longestSubstring;
+    }
+
+    int n;
+    Boolean[][] dp;
+    public String longestPalindrome(String s) {
+        n = s.length();
+        dp = new Boolean[n][n];
+
+        isPalindrome(s, 0, n - 1);
+        int maxLength = -1;
+        int ansI = 0;
+        int ansJ = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) { // TODO - Find a more efficient way of finding the solution from boolean[][] dp;
+                if (j - i + 1 > maxLength) {
+                    if (isPalindrome(s, i, j)) {
+                        maxLength = j - i + 1;
+                        ansI = i;
+                        ansJ = j;
+                    }
+                }
+            }
+        }
+        String ans = s.substring(ansI, ansJ + 1);
+        System.out.println(ans);
+        return ans;
+    }
+
+    private boolean isPalindrome(String s, int left, int right) {
+        if (left < 0 || right > n - 1) {
+            return false;
+        } else if (left == right) {
+            return true;
+        } else if (left == right - 1) {
+            return s.charAt(left) == s.charAt(right);
+        }
+
+        if (dp[left][right] != null) {
+            return dp[left][right];
+        }
+
+        boolean localAns;
+        if (s.charAt(left) == s.charAt(right)) {
+            localAns = isPalindrome(s, left + 1, right - 1);
+        } else {
+            localAns = false;
+            isPalindrome(s, left + 1, right);
+            isPalindrome(s, left, right - 1);
+        }
+        dp[left][right] = localAns;
+        return localAns;
     }
 }
 

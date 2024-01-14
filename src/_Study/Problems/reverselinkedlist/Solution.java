@@ -63,9 +63,9 @@ class Solution {
 class Tests {
     public static void main(String[] args) {
         Solution sol = new Solution();
-        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.createLinkedList(new int[]{1,2,3,4,5})));
-        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.createLinkedList(new int[]{1,2})));
-        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.createLinkedList(new int[]{1})));
-        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.createLinkedList(new int[]{})));
+        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.fromArray(new int[]{1,2,3,4,5})));
+        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.fromArray(new int[]{1,2})));
+        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.fromArray(new int[]{1})));
+        ListNode.printLinkedList(sol.reverseListRECURSIVE1(ListNode.fromArray(new int[]{})));
     }
 }

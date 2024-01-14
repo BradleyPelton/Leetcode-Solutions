@@ -17,7 +17,7 @@ class Solution {
         int left = 0;
         int right = nums.length - 1;
         while (left <= right) {
-            int midPoint = left + (right - left) / 2; // left + (diff/2) prevents overflow from the typical (left+right)/2
+            int midPoint = left + (right - left) / 2; // left + (diff/2) prevents overflow from the simple (left+right)/2
             if (nums[midPoint] == target) {
                 return midPoint;
             } else if (nums[midPoint] > target) {
@@ -26,7 +26,7 @@ class Solution {
                 left = midPoint + 1;
             }
         }
-        return -1;
+        return -1; // canonically, return (-1 - left) (left is where the insertion WOULD BE if it existed)
     }
 }
 

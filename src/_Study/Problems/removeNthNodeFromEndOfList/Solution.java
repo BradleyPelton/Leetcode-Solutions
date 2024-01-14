@@ -42,25 +42,25 @@ class Tests {
         Solution sol = new Solution();
         ListNode.printLinkedList(
                 sol.removeNthFromEnd(
-                        ListNode.createLinkedList(new int[]{1,2,3,4,5}),
+                        ListNode.fromArray(new int[]{1,2,3,4,5}),
                         2
                 )
         );
         ListNode.printLinkedList(
                 sol.removeNthFromEnd(
-                        ListNode.createLinkedList(new int[]{1}),
+                        ListNode.fromArray(new int[]{1}),
                         1
                 )
         );
         ListNode.printLinkedList(
                 sol.removeNthFromEnd(
-                        ListNode.createLinkedList(new int[]{1,2}),
+                        ListNode.fromArray(new int[]{1,2}),
                         1
                 )
         );
         ListNode.printLinkedList(
                 sol.removeNthFromEnd(
-                        ListNode.createLinkedList(new int[]{1,2}),
+                        ListNode.fromArray(new int[]{1,2}),
                         2
                 )
         );

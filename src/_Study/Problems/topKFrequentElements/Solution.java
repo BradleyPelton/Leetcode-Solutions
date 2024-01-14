@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * 347. Top K Frequent Elements
@@ -16,7 +17,7 @@ import java.util.Map;
  * // TODO - There are some interesting solutions involving heaps, special sorting algorithms, etc.
  */
 class Solution {
-    public int[] topKFrequent(int[] nums, int k) {
+    public int[] topKFrequentSORT(int[] nums, int k) { // Sort - 33% runtime, 72% memory
         Map<Integer, Integer> occMap = new HashMap<>();
 
         for (int val :  nums) {
@@ -36,6 +37,29 @@ class Solution {
             ans[i] = occList.get(i)[0];
         }
         //System.out.println(Arrays.toString(ans));
+        return ans;
+    }
+
+    public int[] topKFrequent(int[] nums, int k) { // PriorityQueue - 33% runtime, 94% memory
+        Map<Integer, Integer> occMap = new HashMap<>();
+
+        for (int val :  nums) {
+            occMap.put(val, occMap.getOrDefault(val, 0) + 1);
+        }
+
+        PriorityQueue<int[]> freqPQ = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+        for (int key : occMap.keySet()) {
+            freqPQ.add(new int[]{key, occMap.get(key)});
+            if (freqPQ.size() > k) {
+                freqPQ.remove();
+            }
+        }
+        int[] ans = new int[k];
+
+        for (int i = k - 1; i >= 0; i--) {
+            ans[i] = freqPQ.remove()[0];
+        }
+        System.out.println(Arrays.toString(ans));
         return ans;
     }
 }
