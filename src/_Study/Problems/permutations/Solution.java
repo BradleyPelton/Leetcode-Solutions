@@ -1,6 +1,7 @@
 package _Study.Problems.permutations;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,14 +12,14 @@ import java.util.List;
  */
 class Solution {
     List<List<Integer>> ans;
-    public List<List<Integer>> permute(int[] nums) {
+    public List<List<Integer>> permute(int[] nums) { // 5% runtime, 5% memory. Incredibly slow
         ans = new ArrayList<>();
-        permute(nums, new ArrayList<>());
+        permute(nums, new LinkedList<>());
         System.out.println(ans);
         return ans;
     }
 
-    private void permute(int[] nums, List<Integer> currVals) {
+    private void permute(int[] nums, LinkedList<Integer> currVals) {
         if (currVals.size() == nums.length) {
             ans.add(new ArrayList<>(currVals));
             return;
@@ -28,7 +29,7 @@ class Solution {
             if (!currVals.contains(val)) {
                 currVals.add(val);
                 permute(nums, currVals);
-                currVals.remove(Integer.valueOf(val));
+                currVals.removeLast();
             }
         }
     }

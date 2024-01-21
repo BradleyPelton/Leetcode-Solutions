@@ -21,6 +21,7 @@ public class JavaCheatsheet {
         int val = 42;
         int[] nums = {1, 2, 3};
         int[][] grid = {{1,2,3},{4,5,6},{7,8,9}};
+        int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         List<String> stringList = List.of("a","b","def");
 // =====================================================================================================================
 // =====================================================================================================================
@@ -28,8 +29,13 @@ public class JavaCheatsheet {
         //Hashmap
 
         Map<Integer, Integer> occMap = new HashMap<>();
-        for (int e : nums) {
-            occMap.put(e, occMap.getOrDefault(e, 0) + 1);
+        for (int num : nums) {
+            occMap.put(num, occMap.getOrDefault(num, 0) + 1);
+        }
+
+        Map<Integer, List<Integer>> indicesMap = new HashMap<>();
+        for (int num : nums) {
+            indicesMap.computeIfAbsent(num, unused -> new ArrayList<>()).add(num);
         }
 // =====================================================================================================================
 // =====================================================================================================================
@@ -45,14 +51,14 @@ public class JavaCheatsheet {
             }
         });
 
-        Queue<Integer[]> intPQ = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
+        Queue<Integer[]> intArrPQ = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
+        Queue<Integer> intPQ = new PriorityQueue<>(Comparator.reverseOrder());
 
-        List<String> streamList = stringList.stream()
-                .sorted(
-                        Comparator
-                                .comparingInt(String::length)
-                                .thenComparing(String::valueOf))
-                .collect(Collectors.toList());
+        Queue<String> stringPQ = new PriorityQueue<>(Comparator
+                        .comparingInt(a -> ((String)a).length())
+                        .thenComparing((b,c) -> ((String) b).compareTo((String) c))
+        );
+
 
         // .isEmpty()
         // .poll() - pop the head
@@ -61,7 +67,7 @@ public class JavaCheatsheet {
 // =====================================================================================================================
 // =====================================================================================================================
 // =====================================================================================================================
-        // Custom Comparator inner class
+        // Custom Comparator inner class (Deprecated, use Comparator.comparingInt()
         Arrays.sort(grid, new java.util.Comparator<>() { // lambda is better here
             public int compare(int[] a, int[] b) {
                 return Integer.compare(a[0], b[0]);
@@ -91,7 +97,7 @@ public class JavaCheatsheet {
         // List
         // int[] -> List<Integer>
         List<Integer> arrList = Arrays.stream(nums).boxed().collect(Collectors.toList());
-        List<Integer> arrList2 = (ArrayList) Arrays.stream(nums).boxed().collect(Collectors.toList());
+        List<Integer> arrList2 = Arrays.stream(nums).boxed().collect(Collectors.toCollection(ArrayList::new));
 
         // List<Integer> -> int[]
         int[] arr2 = arrList.stream().mapToInt(i -> i).toArray();

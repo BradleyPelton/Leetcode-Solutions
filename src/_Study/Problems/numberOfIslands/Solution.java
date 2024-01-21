@@ -11,46 +11,42 @@ package _Study.Problems.numberOfIslands;
 class Solution {
     int m;
     int n;
-    public int numIslands(char[][] grid) { // DFS - 23% runtime, 32% memory
+    char[][] grid;
+    int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    public int numIslands(char[][] grid) { // DFS - 33% runtime, 5% memory
+        this.grid = grid;
         m = grid.length;
         n = grid[0].length;
 
-        int islands = 0;
+        int islandCount = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
-                    islands++;
-                    dfsIslands(grid, i, j);
+                    islandCount++;
+                    dfsSink(i, j);
                 }
             }
         }
-        System.out.println(islands);
-        return islands;
+        System.out.println(islandCount);
+        return islandCount;
     }
 
-    private void dfsIslands(char[][] grid, int currI, int currJ) {
+    private void dfsSink(int currI, int currJ) {
         grid[currI][currJ] = '0';
 
-
-        // LEFT
-        if (currJ > 0 && grid[currI][currJ - 1] == '1') {
-            dfsIslands(grid, currI, currJ - 1);
+        for (int[] dir : DIRS) {
+            int[] updatedCoord = {currI + dir[0], currJ + dir[1]};
+            if (isValidCoordinate(updatedCoord[0], updatedCoord[1])) {
+                if (grid[updatedCoord[0]][updatedCoord[1]] == '1') {
+                    dfsSink(updatedCoord[0], updatedCoord[1]);
+                }
+            }
         }
+    }
 
-        // right
-        if (currJ < n - 1 && grid[currI][currJ + 1] == '1') {
-            dfsIslands(grid, currI, currJ + 1);
-        }
-
-        // UP
-        if (currI > 0 && grid[currI - 1][currJ] == '1') {
-            dfsIslands(grid, currI - 1, currJ);
-        }
-
-        // DOWN
-        if (currI < m - 1 && grid[currI + 1][currJ] == '1') {
-            dfsIslands(grid, currI + 1, currJ);
-        }
+    private boolean isValidCoordinate(int i, int j) {
+        return i < m && i >= 0 && j >= 0 && j < n;
     }
 }
 

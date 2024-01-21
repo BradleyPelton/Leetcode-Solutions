@@ -1,46 +1,54 @@
 package _Study.Problems.djikstraTODO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 class Solution {
-    public int numberOfSets(int n, int maxDistance, int[][] roads) {
 
+    // Example problem used https://leetcode.com/problems/network-delay-time/description/
+    // Find the "heaviest" path/max pathSum from source to any node
 
-        // Djikstra template from Explore/Resources/Templates
-//        int[] distances = new int[n];
-//        Arrays.fill(distances, Integer.MAX_VALUE);
-//        distances[source] = 0;
-//
-//        Queue<Pair<Integer, Integer>> heap = new PriorityQueue<Pair<Integer,Integer>>(Comparator.comparing(Pair::getKey));
-//        heap.add(new Pair(0, source));
-//
-//        while (!heap.isEmpty()) {
-//            Pair<Integer, Integer> curr = heap.remove();
-//            int currDist = curr.getKey();
-//            int node = curr.getValue();
-//
-//            if (currDist > distances[node]) {
-//                continue;
-//            }
-//
-//            for (Pair<Integer, Integer> edge: graph.get(node)) {
-//                int nei = edge.getKey();
-//                int weight = edge.getValue();
-//                int dist = currDist + weight;
-//
-//                if (dist < distances[nei]) {
-//                    distances[nei] = dist;
-//                    heap.add(new Pair(dist, nei));
-//                }
-//            }
+    public int networkDelayTime(int[][] times, int n, int source) {
+        int[] shortestTime = new int[n];
+        Arrays.fill(shortestTime, Integer.MAX_VALUE);
 
+        Map<Integer, List<List<Integer>>> adjacencyList = new HashMap<>(); // adjacency with weighted edges
+        for (int[] time : times) {
+            adjacencyList.computeIfAbsent(time[0], a -> new ArrayList<>()).add(List.of(time[1],time[2])); // (id, weight)
+        }
 
+        // node = {location, totalTravelDistance}
+        PriorityQueue<int[]> nodesToSearch = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+        nodesToSearch.add(new int[]{source, 0});
 
-        return -42;
+        while (!nodesToSearch.isEmpty()) {
+            int[] node = nodesToSearch.remove();
+            if (shortestTime[node[0]] > node[1]) {
+                shortestTime[node[0]] = node[1];
+
+                if (adjacencyList.containsKey(node[0])) {
+                    for (List<Integer> edge : adjacencyList.get(node[0])) {
+                        nodesToSearch.add(new int[]{edge.get(0), node[1] + edge.get(1)});
+                    }
+                }
+            }
+        }
+
+        int ans = Integer.MIN_VALUE;
+        for (int time : shortestTime) {
+            ans = Math.max(ans, time);
+        }
+        if (ans == Integer.MAX_VALUE) {
+            ans = -1;
+        }
+        System.out.println(ans);
+        return ans;
     }
 }

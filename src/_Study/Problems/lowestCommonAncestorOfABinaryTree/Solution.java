@@ -61,8 +61,6 @@ class Solution {
                 ans = node;
             } else if (leftTree[1] && rightTree[0]) {
                 ans = node;
-//            } else if (leftTree[0] && rightTree[0]) {
-//            } else if (leftTree[1] && rightTree[1]) {
             }
         }
         searchResults[0] = searchResults[0] || leftTree[0] || rightTree[0];

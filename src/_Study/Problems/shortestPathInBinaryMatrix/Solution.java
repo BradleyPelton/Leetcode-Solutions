@@ -21,7 +21,9 @@ class Solution {  // BFS
     }
 
     int n;
+    int m;
     public int shortestPathBinaryMatrix(int[][] grid) { // BFS - 76% runtime, 6% memory .
+        m = grid.length;
         n = grid.length;
 
         if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {
@@ -65,7 +67,7 @@ class Solution {  // BFS
     }
 
     private boolean isValidCoordinate(int i, int j) {
-        return i < n && i >= 0 && j >= 0 && j < n;
+        return i < m && i >= 0 && j >= 0 && j < n;
     }
 }
 
