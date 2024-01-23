@@ -10,7 +10,7 @@ import java.util.List;
  * https://leetcode.com/problems/merge-intervals/description
  *
  * <p>
- *     Connected Components Approach:
+ *     Connected Components Approach: // TODO -
  *     Time Complexity: Big O(n**2)
  *     Space Comlexity: Big O(n**2)
  * </p>
@@ -22,39 +22,30 @@ import java.util.List;
  * </p>
  */
 class Solution {
-    public int[][] merge(int[][] intervals) {
-        // CONNECTED COMPONENTS
+//    public int[][] merge(int[][] intervals) {
+        // TODO - CONNECTED COMPONENTS
         // Basically the brute force solution. Still O(n**2). See mergeSorted for
-        return null;
-    }
+//        return null;
+//    }
 
-    public int[][] mergeSORTED(int[][] intervals) {
+    public int[][] merge(int[][] intervals) { // Sorting - 20% runtime, 16% memory
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 
-        Arrays.sort(intervals, Comparator.comparing(a -> a[0]));
+        List<int[]> ansList = new ArrayList<>();
 
-        List<int[]> mergedIntervals = new ArrayList<>();
-        mergedIntervals.add(intervals[0]);
+        int[] currInterval = intervals[0];
         for (int i = 1; i < intervals.length; i++) {
-            int[] previousInterval = mergedIntervals.remove(mergedIntervals.size() - 1);
-            int[] currentInterval = intervals[i];
-
-            if (previousInterval[1] >= currentInterval[0]) {
-                if (previousInterval[1] >= currentInterval[1]) { // proper containment
-                    mergedIntervals.add(previousInterval);
-                } else {
-                    int[] newInterval = new int[]{previousInterval[0], currentInterval[1]};
-                    mergedIntervals.add(newInterval);
-                }
-            } else { // else no overlap
-                mergedIntervals.add(previousInterval);
-                mergedIntervals.add(currentInterval);
+            if (currInterval[1] >= intervals[i][1]) { // proper containment
+                continue;
+            } else if (currInterval[1] >= intervals[i][0] && currInterval[1] < intervals[i][1]) { // overlap
+                currInterval[1] = intervals[i][1];
+            } else { // disjoint
+                ansList.add(currInterval);
+                currInterval = intervals[i];
             }
         }
-
-        int[][] ans = new int[mergedIntervals.size()][2];
-        for (int i = 0; i < mergedIntervals.size(); i++) {
-            ans[i] = mergedIntervals.get(i);
-        }
+        ansList.add(currInterval);
+        int[][] ans = ansList.toArray(new int[ansList.size()][]);
         System.out.println(Arrays.deepToString(ans));
         return ans;
     }

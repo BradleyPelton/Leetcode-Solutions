@@ -7,12 +7,10 @@ import java.util.List;
 /**
  * 78. Subsets
  * https://leetcode.com/problems/subsets/description/
- *
- * Clean solution: 71% runtime, 65% memory
  */
 class Solution {
     List<List<Integer>> ans;
-    public List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsets(int[] nums) { // 72% runtime, 91% memory
         ans = new ArrayList<>();
         generateSubsets(nums, 0, new LinkedList<>());
         // System.out.println(ans);

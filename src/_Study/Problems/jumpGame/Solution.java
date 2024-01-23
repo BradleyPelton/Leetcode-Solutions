@@ -6,28 +6,35 @@ import java.util.Arrays;
  * 55. Jump Game
  * https://leetcode.com/problems/jump-game/description/
  *
+ * // TODO - Backtracking solution
+ * // TODO - Greedy solution
  */
 class Solution {
-    public boolean canJumpBottomUp(int[] nums) {
-        int[] dp = new int[nums.length]; // dp[i] is the minimum number of jumps needed to get to the end
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[nums.length - 1] = 0;
+    public boolean canJump(int[] nums) { // DP - Bottom up - 20% runtime, 32% memory
+        int n = nums.length;
+        boolean[] dp = new boolean[n];
+        dp[n - 1] = true;
 
-        for (int i = nums.length - 2; i >= 0; i--) {
-            int jumpLength = nums[i];
-            if (i + jumpLength >= nums.length - 1) {
-                dp[i] = 1; // one jump solution
+        for (int i = n - 2 ; i >= 0; i--) {
+            int currJumpDistance = nums[i];
+            if (i + currJumpDistance >= n - 1) {
+                dp[i] = true;
             } else {
-                for (int j = 1; j <= jumpLength && i + j < nums.length - 1; j++) {
-                    if (dp[i + j] == Integer.MAX_VALUE) { continue; }
-                    dp[i] = Math.min(dp[i], dp[i + j] + 1);
+                for (int j = i + currJumpDistance; j > i; j--) {
+                    if (dp[j]) {
+                        dp[i] = true;
+                        break;
+                    }
                 }
             }
         }
-        return dp[0] != Integer.MAX_VALUE; // if non infinity, then it's possible.
+
+        boolean ans = dp[0];
+        System.out.println(ans);
+        return ans;
     }
 
-    public boolean canJump(int[] nums) {
+    public boolean canJumpTOPDOWN(int[] nums) {
         int[] dp = new int[nums.length];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[nums.length - 1] = 0;
