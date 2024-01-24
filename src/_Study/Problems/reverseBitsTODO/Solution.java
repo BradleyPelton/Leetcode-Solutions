@@ -1,13 +1,21 @@
 package _Study.Problems.reverseBitsTODO;
 
+/**
+ * 190. Reverse Bits
+ * https://leetcode.com/problems/reverse-bits/description/
+ */
 public class Solution {
-    // you need treat n as an unsigned value
     public int reverseBits(int n) {
+        // Dumb problem . toBinaryString().reverse.parseBinary() should have worked.
 
-        String bin = Integer.toBinaryString(n);
-        String reversedBin = new StringBuilder(bin).reverse().toString();
-//        int dec = Long.parseLong(reversedBin, 2);
-        return -42;
+        int ans = 0;
+        for (int i = 0; i < 32; i++) {
+            if ((n & (1 << i)) != 0) {
+                ans = ans | (1 << (31 - i));
+            }
+        }
+        System.out.println(ans);
+        return ans;
     }
 }
 

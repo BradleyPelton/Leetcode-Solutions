@@ -39,6 +39,9 @@ public class TreeNode {
         }
 
         TreeNode root = new TreeNode(arr[0]);
+        if (arr.length == 1) {
+            return root;
+        }
         int arrIndex = 1;
 
         Queue<TreeNode> nodesToModify = new ArrayDeque<>();
