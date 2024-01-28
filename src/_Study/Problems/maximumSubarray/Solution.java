@@ -34,3 +34,13 @@ class Solution {
         return maxSum;
     }
 }
+
+class Tests {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        sol.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
+        sol.maxSubArray(new int[]{1});
+        sol.maxSubArray(new int[]{5,4,-1,7,8});
+
+    }
+}

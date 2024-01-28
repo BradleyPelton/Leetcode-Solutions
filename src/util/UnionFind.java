@@ -1,31 +1,23 @@
 package util;
 
 /**
- *
  * Union Find (aka Disjoint set) is a data structure
  * used to efficiently determine graph connectivity (e.g. number of connected components)
- *
- * There are many implementations of UnionFind. Some are optimized for search while some are optimized
- * for insert.
- *
+ * <p>
+ * There are many implementations of UnionFind. Some are optimized for search while some are optimized for insert.
  * Some variants store the direct parent of a node, while other variants store the ultimate parent.
- *
+ * <p>
  * Two Primary Methods:
- *      * Find - return the root node ((e.g. the group that the individual a belongs to. ))
- *      * Union - union together two components. Change the parent node of one of the two inputs.
- *
- *
- *
- *
- *
- *
+ *      1. Find - return the root(parent???) node ((e.g. the group that the individual a belongs to. ))
+ *      2. Union - union together two components. Change the parent node of one of the two inputs.
+ * </p>
  *
  */
 public class UnionFind { // Boilerplate code for optimized Disjoint set data structure
     //********************** PATH COMPRESSION AND RANK OPTIMIZATIONS INCLUDED
     private final int[] root;
     private final int[] rank; // Use a rank array to record the height of each vertex, i.e., the "rank" of each vertex.
-    int numberOfConnectedComponents;
+    public int numberOfConnectedComponents;
 
     public UnionFind(int size) {
         root = new int[size];
@@ -75,12 +67,42 @@ public class UnionFind { // Boilerplate code for optimized Disjoint set data str
     public boolean connected(int nodeOne, int nodeTwo) {
         return find(nodeOne) == find(nodeTwo);
     }
-
     public int getCount() {
         return numberOfConnectedComponents;
     }
-
     public int getNumberOfConnectedComponents() {
         return getCount();
     }
 }
+
+
+// UnionFind with path compression but not rank optimization
+//class UnionFind {
+//    private int[] root;
+//
+//    public UnionFind(int size) {
+//        root = new int[size];
+//        for (int i = 0; i < size; i++) {
+//            root[i] = i;
+//        }
+//    }
+//
+//    public int find(int x) {
+//        if (x == root[x]) {
+//            return x;
+//        }
+//        return root[x] = find(root[x]);
+//    }
+//
+//    public void union(int x, int y) {
+//        int rootX = find(x);
+//        int rootY = find(y);
+//        if (rootX != rootY) {
+//            root[rootY] = rootX;
+//        }
+//    }
+//
+//    public boolean connected(int x, int y) {
+//        return find(x) == find(y);
+//    }
+//}

@@ -1,40 +1,22 @@
-package _Study.Problems.graphValidTree;
-
-import util.UnionFind;
-
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
+package _Study.Problems.numberOfProvinces;
 
 
 /**
- * 261. Graph Valid Tree
- * https://leetcode.com/problems/graph-valid-tree/description/
+ * 547. Number of Provinces
+ * https://leetcode.com/problems/number-of-provinces/description/
  *
+ * Canonical UnionFind (Disjoint-Union) problem.
+ * Count the number of connected components in the graph
  *
- * Return true if a graph is a valid tree
+ * // TODO - DFS and BFS
  *
- *
- * Tree defn: connected acyclic graph
- * Tree IFF Maximally connected IFF Acyclic Connected
- * Tree IFF (n - 1) edges and fully connected
- *
- * // TODO - BFS and DFS
  */
 class Solution {
-    Set<Integer> visited;
-    Map<Integer, List<Integer>> adjacencyList;
-
     public class UnionFind { // Boilerplate code for optimized Disjoint set data structure
         //********************** PATH COMPRESSION AND RANK OPTIMIZATIONS INCLUDED
         private final int[] root;
         private final int[] rank; // Use a rank array to record the height of each vertex, i.e., the "rank" of each vertex.
-        public int numberOfConnectedComponents;
+        int numberOfConnectedComponents;
 
         public UnionFind(int size) {
             root = new int[size];
@@ -92,44 +74,36 @@ class Solution {
         }
     }
 
-    public boolean validTree(int n, int[][] edges) { // UnionFind - 83% runtime, 60% memory
-        UnionFind uf = new UnionFind(n);
+    int n;
+    public int findCircleNum(int[][] isConnected) { // UnionFind (dsjoint-union) - 28% runtime, 27% memory
+        n = isConnected.length;
+        UnionFind uj = new UnionFind(n);
 
-        for (int[] edge : edges) {
-            if (!uf.union(edge[0], edge[1])) {
-                System.out.println("false, cycle detected"); // if the parent is already equal, there is already a path
-                return false;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (isConnected[i][j] == 1) {
+                    uj.union(i, j);
+                }
             }
         }
 
-        if (uf.numberOfConnectedComponents > 1) {
-            System.out.println("false, graph is not connected");
-            return false;
-        }
-        System.out.println("true");
-        return true;
+        int ans = uj.numberOfConnectedComponents;
+        System.out.println(ans);
+        return ans;
     }
 }
-
 
 class Tests {
     public static void main(String[] args) {
         Solution sol = new Solution();
-        sol.validTree(
-                5,
-                new int[][]{{0,1},{0,2},{0,3},{1,4}}
-        );
-        sol.validTree(
-                5,
-                new int[][]{{0,1},{1,2},{2,3},{1,3},{1,4}}
-        );
-        sol.validTree(
-                3,
-                new int[][]{{1,0},{2,0}}
-        );
-        sol.validTree(
-                4,
-                new int[][]{{2,3},{1,2},{1,3}}
-        );
+        sol.findCircleNum(
+                new int[][]{{1,1,0},{1,1,0},{0,0,1}}
+        ); // 2
+        sol.findCircleNum(
+                new int[][]{{1,0,0},{0,1,0},{0,0,1}}
+        ); // 3
+        sol.findCircleNum(
+                new int[][]{{1,0,0,1},{0,1,1,0},{0,1,1,1},{1,0,1,1}}
+        ); // 1
     }
 }
