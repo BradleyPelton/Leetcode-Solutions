@@ -27,7 +27,7 @@ class Solution {
         // Minimum distance from characters.
         // Characters are nodes.
         // I effectively created an adjanceny list. My problem is creating a "pathList" (all costs for all paths)
-        // Maybe this is typical Djikstra's? We need all path costs though. Djikstra's is min path cost for one node.
+        // Maybe this is typical Dijkstra's? We need all path costs though. Dijkstra's is min path cost for one node.
 
 
         while (true) {

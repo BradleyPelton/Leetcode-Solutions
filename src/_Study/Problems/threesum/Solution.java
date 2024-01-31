@@ -3,8 +3,10 @@ package _Study.Problems.threesum;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -25,53 +27,62 @@ import java.util.Set;
  *
  *
  * TODO - There are some good optimizations here
+ *
+ * // TODO - Follow Up: No sorting allowed
  */
 class Solution {
-//    public List<List<Integer>> threeSumTWOPOINTER(int[] nums) { // two pointer solution
-//        Arrays.sort(nums);
-//        Set<List<Integer>> tupleSolutions = new HashSet<>();
-//
-//        for (int i = 0; i < nums.length - 2; i++) {
-//            int target = -nums[i];
-//            int left = i + 1;
-//            int right = nums.length - 1;
-//            while (left < right) {
-//                int currSum = nums[left] + nums[right];
-//                if (currSum < target) {
-//                    left++;
-//                } else if (currSum > target) {
-//                    right--;
-//                } else {
-//                    tupleSolutions.add(List.of(nums[i], nums[left], nums[right]));
-//                    left++; // TODO  debatable - Doesn't prevent duplicates, but prevents infinite loop.
-//                }
-//            }
-//        }
-////        System.out.println(tupleSolutions);
-//        List<List<Integer>> ans = new ArrayList<>(tupleSolutions);
-//        return ans;
-//    }
-
-    public List<List<Integer>> threeSum(int[] nums) { // n**2  + binary search  - Slow because of Set<List<<>>
-        // TODO - Clever way of avoiding duplicates without hashing
+    public List<List<Integer>> threeSum(int[] nums) { // Two Pointer
         int n = nums.length;
         Arrays.sort(nums);
-        Set<List<Integer>> tupleSolutions = new HashSet<>();
+        List<List<Integer>> tuples = new ArrayList<>();
 
-        for (int i = 0; i < n - 2; i++) {
-            for (int j = i + 1; j < n - 1; j++) {
-                int target = -nums[i] -nums[j];
+        Map<Integer, Set<Integer>> uniquePairs = new HashMap<>(); // optimization for duplicates.
+        for (int firstIndex = 0; firstIndex < n - 2; firstIndex++) { // fix first index + two pointer solution for two-sum
+            int target = -nums[firstIndex];
+            uniquePairs.putIfAbsent(nums[firstIndex], new HashSet<>());
+            int left = firstIndex + 1;
+            int right = n - 1;
 
-                int pos = Arrays.binarySearch(nums, j + 1, n, target);
-                if (pos > 0) {
-                    tupleSolutions.add(List.of(nums[i],nums[j],nums[pos]));
+            while (left < right) {
+                int currSum = nums[left] + nums[right];
+                if (currSum == target) {
+                    if (!uniquePairs.get(nums[firstIndex]).contains(nums[left])) {
+                        uniquePairs.get(nums[firstIndex]).add(nums[left]);
+                        tuples.add(List.of(nums[firstIndex], nums[left], nums[right]));
+                    }
+                    left++; // TODO - Debatable behavior at this point. Some people use a whileLoop until nums[left] != nums[left+1];
+                } else if (currSum < target) {
+                    left++;
+                } else if (currSum > target) {
+                    right--;
                 }
             }
         }
-        System.out.println(tupleSolutions);
-        List<List<Integer>> ans = new ArrayList<>(tupleSolutions);
-        return ans;
+
+        System.out.println(tuples);
+        return tuples;
     }
+
+//    public List<List<Integer>> threeSum(int[] nums) { // n**2  + binary search  - Slow because of Set<List<<>>
+//        // TODO - Clever way of avoiding duplicates without hashing
+//        int n = nums.length;
+//        Arrays.sort(nums);
+//        Set<List<Integer>> tupleSolutions = new HashSet<>();
+//
+//        for (int i = 0; i < n - 2; i++) {
+//            for (int j = i + 1; j < n - 1; j++) {
+//                int target = -nums[i] -nums[j];
+//
+//                int pos = Arrays.binarySearch(nums, j + 1, n, target);
+//                if (pos > 0) {
+//                    tupleSolutions.add(List.of(nums[i],nums[j],nums[pos]));
+//                }
+//            }
+//        }
+//        System.out.println(tupleSolutions);
+//        List<List<Integer>> ans = new ArrayList<>(tupleSolutions);
+//        return ans;
+//    }
 }
 
 class Tests {

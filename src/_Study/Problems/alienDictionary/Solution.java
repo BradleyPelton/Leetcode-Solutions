@@ -3,6 +3,7 @@ package _Study.Problems.alienDictionary;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +51,7 @@ class Solution {
 
 
         StringBuilder ansBuilder = new StringBuilder();
-        ArrayDeque<Integer> charsWithZeroInDegree = new ArrayDeque<>();
+        Deque<Integer> charsWithZeroInDegree = new ArrayDeque<>();
         for (int i = 0; i < 26; i++) {
             if (charInDegree[i] == 0) {
                 charsWithZeroInDegree.add(i);

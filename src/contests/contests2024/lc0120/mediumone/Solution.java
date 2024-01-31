@@ -13,13 +13,13 @@ import java.util.Queue;
 
 
 // Holy shit
-// Djikstra multiple sources
+// Dijkstra multiple sources
 // SOlved after first attempt
 // Sovled after 20 minutes
 
 
 // Lessons: BFS for shortest path for unweighted runs in linear time
-// Since Djikstra uses a PQ, it runs in O (n log n)
+// Since Dijkstra uses a PQ, it runs in O (n log n)
 
 
 class Solution {

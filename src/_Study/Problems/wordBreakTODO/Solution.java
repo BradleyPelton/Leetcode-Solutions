@@ -9,36 +9,77 @@ import java.util.List;
  * https://leetcode.com/problems/word-break/description/
  *
  *
- * // TODO  BottomUp
+ * // TODO  - DP bottom up
+ * // TODO - BFS
  */
 class Solution {
+    class TrieNode {
+        public Solution.TrieNode[] children;
+        public boolean endsWords;
+
+        public TrieNode() {
+            children = new Solution.TrieNode[26];
+            endsWords = false;
+        }
+    }
+
+    Solution.TrieNode root;
     Boolean[] dp;
-    public boolean wordBreak(String s, List<String> wordDict) {
-        dp = new Boolean[s.length() + 1];
-        boolean ans = breakApart(s, wordDict);
+    String s;
+    int n;
+    public boolean wordBreak(String s, List<String> wordDict) { // Top Down DP with Trie - 91% runtime, 65% memory
+        this.s = s;
+        n = s.length();
+        dp = new Boolean[n];
+        root = new Solution.TrieNode();
+        buildTrieStructure(wordDict);
+        boolean ans = wordBreak(0);
         System.out.println(ans);
         return ans;
     }
 
-    private boolean breakApart(String s, List<String> wordDict) {
-        if (s.isEmpty()) {
+    private boolean wordBreak(int index) {
+        if (index == n) {
             return true;
         }
 
-        if (dp[s.length()] != null) {
-            return dp[s.length()];
+        if (dp[index] != null) {
+            return dp[index];
         }
 
+        Solution.TrieNode currNode = root;
         boolean isPossible = false;
-        for (String word : wordDict) {
-            if (s.startsWith(word)) {
-                String newString = s.substring(word.length());
-                isPossible |= breakApart(newString, wordDict);
-            }
-        }
+        for (int i = index; i < n; i++) {
+            if (currNode.children[s.charAt(i) - 'a'] == null) {
+                break;
+            } else {
+                currNode = currNode.children[s.charAt(i) - 'a'];
 
-        dp[s.length()] = isPossible;
+                if (currNode.endsWords) {
+                    boolean truncate = wordBreak(i + 1);
+                    if (truncate) {
+                        isPossible = true;
+                        break;
+                    }
+                }
+            }
+
+        }
+        dp[index] = isPossible;
         return isPossible;
+    }
+
+    private void buildTrieStructure(List<String> words) {
+        for (String word : words) {
+            Solution.TrieNode currNode = root;
+            for (char c : word.toCharArray()) {
+                if (currNode.children[c - 'a'] == null) {
+                    currNode.children[c - 'a'] = new Solution.TrieNode();
+                }
+                currNode = currNode.children[c - 'a'];
+            }
+            currNode.endsWords = true;
+        }
     }
 }
 

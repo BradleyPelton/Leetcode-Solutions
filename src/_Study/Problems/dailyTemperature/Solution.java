@@ -12,23 +12,20 @@ import java.util.Stack;
  * Canonical monotonic stack problem (find next greatest element)
  */
 class Solution {
-    public int[] dailyTemperatures(int[] temperatures) { // Monotonic Stack - 77% runtime, 24% memory
+    public int[] dailyTemperatures(int[] temperatures) { // Monotonic Stack - 92% runtime, 79% memory
         int n = temperatures.length;
-//        Stack<Integer> tempDeque = new Stack<>(); // debatable to just always use ArrayDeque for everything
-        ArrayDeque<Integer> tempDeque = new ArrayDeque<>(); // debatable to just always use ArrayDeque for everything
-
         int[] ans = new int[n];
+        ArrayDeque<Integer> temperatureStack = new ArrayDeque<>();
         for (int i = 0; i < n; i++) {
-            int currTemp = temperatures[i];
-            while (!tempDeque.isEmpty()) {
-                if (currTemp > temperatures[tempDeque.peek()]) {
-                    int topOfStackIndex = tempDeque.remove();
-                    ans[topOfStackIndex] = i - topOfStackIndex;
+            while (!temperatureStack.isEmpty()) {
+                if (temperatures[i] > temperatures[temperatureStack.peekFirst()]) {
+                    int index = temperatureStack.removeFirst();
+                    ans[index] = i - index;
                 } else {
                     break;
                 }
             }
-            tempDeque.addFirst(i);
+            temperatureStack.addFirst(i);
         }
         //System.out.println(Arrays.toString(ans));
         return ans;
