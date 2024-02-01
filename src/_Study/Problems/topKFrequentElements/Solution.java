@@ -40,26 +40,27 @@ class Solution {
         return ans;
     }
 
-    public int[] topKFrequent(int[] nums, int k) { // PriorityQueue - 33% runtime, 94% memory
+    public int[] topKFrequent(int[] nums, int k) { // Heap/PriorityQueue - 64% runtime, 91% memory
         Map<Integer, Integer> occMap = new HashMap<>();
-
-        for (int val :  nums) {
+        for (int val : nums) {
             occMap.put(val, occMap.getOrDefault(val, 0) + 1);
         }
 
         PriorityQueue<int[]> freqPQ = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+
         for (int key : occMap.keySet()) {
             freqPQ.add(new int[]{key, occMap.get(key)});
+
             if (freqPQ.size() > k) {
                 freqPQ.remove();
             }
         }
-        int[] ans = new int[k];
 
-        for (int i = k - 1; i >= 0; i--) {
+        int[] ans = new int[k];
+        for (int i = 0; i < k; i++) {
             ans[i] = freqPQ.remove()[0];
         }
-        System.out.println(Arrays.toString(ans));
+        //System.out.println(Arrays.toString(ans));
         return ans;
     }
 }

@@ -8,9 +8,7 @@ import java.util.Arrays;
  *
  */
 class Solution {
-    public int maxProduct(int[] nums) {
-        if (nums.length == 0) { return 0; }
-
+    public int maxProduct(int[] nums) { // DP - Bottom Up - Space Optimized -
         int maxSoFar = nums[0];
         int minSoFar = nums[0]; // track both min and max since -1 * min could be > max
         int globalMax = maxSoFar;
@@ -36,6 +34,51 @@ class Solution {
             globalMax = Math.max(maxSoFar, globalMax);
         }
         return globalMax;
+    }
+
+    public int maxProductBottomUp(int[] nums) { // DP - Bottom Up - 23% runtime, 56% memory
+        int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        }
+        int[] smallestProduct = new int[n];
+        int[] largestProduct = new int[n];
+        smallestProduct[0] = Math.min(0, nums[0]);
+        largestProduct[0] = Math.max(0, nums[0]);
+
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == 0) {
+                largestProduct[i] = 0;
+                smallestProduct[i] = 0;
+            } else {
+                if (nums[i] > 0) {
+                    largestProduct[i] = Math.max(
+                            nums[i],
+                            largestProduct[i - 1] * nums[i]
+                    );
+                    smallestProduct[i] = Math.min(
+                            nums[i],
+                            smallestProduct[i - 1] * nums[i]
+                    );
+                } else { // nums[i] < 0
+                    smallestProduct[i] = Math.min(
+                            nums[i],
+                            largestProduct[i - 1] * nums[i]
+                    );
+                    largestProduct[i] = Math.max(
+                            nums[i],
+                            smallestProduct[i - 1] * nums[i]
+                    );
+                }
+            }
+        }
+
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            ans = Math.max(ans, largestProduct[i]);
+        }
+        System.out.println(ans);
+        return ans;
     }
 
 
@@ -94,8 +137,11 @@ class Solution {
 class Tests {
     public static void main(String[] args) {
         Solution sol = new Solution();
-        sol.maxProduct(new int[]{2,3,-2,4});
-        sol.maxProduct(new int[]{-2,0,-1});
-//        System.out.println(sol.maxProduct(new int[]{-2,0})); // expected zero
+        sol.maxProduct(new int[]{2,3,-2,4}); // 6
+        sol.maxProduct(new int[]{-2,0,-1}); // 0
+        sol.maxProduct(new int[]{-2,0}); // 0
+        sol.maxProduct(new int[]{-4,-3,-2}); // 12
+        sol.maxProduct(new int[]{2,-5,-2,-4,3}); // 24
+        sol.maxProduct(new int[]{-2}); // -2
     }
 }
