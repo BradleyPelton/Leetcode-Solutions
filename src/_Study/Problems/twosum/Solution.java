@@ -20,20 +20,16 @@ import java.util.*;
  *
  */
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        // nums[i] -> i (remember the index)
-        Map<Integer, Integer> alreadySeenValues = new HashMap<>();
-
+    public int[] twoSum(int[] nums, int target) { // HashMap complement - 95% runtime, 18% memory
+        Map<Integer, Integer> seenValues = new HashMap<>(); // nums[i] -> i (remember the index)
         for (int i = 0; i < nums.length; i++) {
-            int currentValue = nums[i];
-            int neededValue = target - currentValue;
-            if (alreadySeenValues.containsKey(neededValue)) {
-                return new int[]{alreadySeenValues.get(neededValue), i};
-            } else {
-                alreadySeenValues.put(currentValue, i);
+            int complement = target - nums[i];
+            if (seenValues.containsKey(complement)) {
+                return new int[]{i, seenValues.get(complement)};
             }
+            seenValues.put(nums[i], i);
         }
-        return null;
+        throw new IllegalStateException("unreachable, solution is guaranteed as input condition");
     }
     // Two pointer solution doesn't work because sorting is required. After sorting, original indices presort are lost.
 }

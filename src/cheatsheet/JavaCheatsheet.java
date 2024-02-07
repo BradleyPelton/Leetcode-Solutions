@@ -160,7 +160,7 @@ public class JavaCheatsheet {
         int cAsInt = '5' - '0';
         int cAsINt = '5' - 48; // '0' == 48
         int cAsInt2 = c - 97; // 'a' = 97, b = '98', ... so `char - 97` will yield [0,25]
-        int cAsInt3 = c - 'a'; // Since 'a' = 97, and since arithmetic operator automatically upcast to int, c-97=c-'a'
+        int cAsInt3 = c - 'a'; // Since 'a' = 97, and since arithmetic operator automatically upcast to int, c - 97 = c - 'a'
         int cAsInT = Character.getNumericValue(c);
         int cAsINT = Integer.parseInt(String.valueOf(c));;
 
@@ -170,7 +170,7 @@ public class JavaCheatsheet {
         char eAsChar = Character.forDigit(e, 10);
 
         // digitSum
-        int digitSum = String.valueOf(val).chars().map(a -> a - 48).sum(); // 10 is the digit sum
+        int digitSum = String.valueOf(val).chars().map(a -> a - 48).sum(); // 10 is the digit sum. String.valueOf() is expensive.
         int digitSum2 = 0;
         while (val > 0) { // more efficient digit sum
             digitSum += val % 10;
@@ -182,10 +182,14 @@ public class JavaCheatsheet {
         char myChar = (char) 50;
         char myCHar = 50;
 
-        // famous char values
-        int aAsInt = 'a'; // 1
-        int AAsInt = 'A'; //
+        // famous char values (Ascii table 0 <= x <= 127)
+        int spaceAsInt = ' '; // 32
         int zeroAsInt = '0'; // 48
+        int nineAsInt = '9'; // 57
+        int AAsInt = 'A'; // 65
+        int ZAsInt = 'Z'; // 90
+        int aAsInt = 'a'; // 97
+        int zAsInt = 'z'; // 122
 
         //  a,b,...,z lowercase
         for (char ch = 'a'; ch < 123; ch++) {continue;}
@@ -197,7 +201,6 @@ public class JavaCheatsheet {
         // reverse
         String reversedWord2 = new StringBuilder(word).reverse().toString();
 
-
         // REGEX
         String[] splitWords = sentenceStr.split("\\s+"); // split on space
         String[] splitWords2 = sentenceStr.split("[^\\w']+"); // split on NON APOSTROPHE
@@ -205,6 +208,7 @@ public class JavaCheatsheet {
         
 
         // MISC
+        int firstOccIndex = word.indexOf("cat");
         String sub = word.substring(0, 3);
         boolean contains = sentenceStr.contains(word.toLowerCase());
         int len = word.length();
@@ -222,6 +226,7 @@ public class JavaCheatsheet {
 
         final long rem = 1_000_000_007L;
         int nMod = (int)(n % rem);
+        int nnMod = (int)(((n % rem) + n) % rem);
 // =====================================================================================================================
 // =====================================================================================================================
 // =====================================================================================================================
