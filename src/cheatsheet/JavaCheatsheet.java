@@ -19,6 +19,7 @@ public class JavaCheatsheet {
         String[] words = {"cat", "dog", "penguin"};
         String sentenceStr = "bob is a cat";
         int val = 42;
+        int diff = 17;
         int[] nums = {1, 2, 3};
         int[][] grid = {{1,2,3},{4,5,6},{7,8,9}};
         int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
@@ -181,6 +182,7 @@ public class JavaCheatsheet {
         // Unsorted
         char myChar = (char) 50;
         char myCHar = 50;
+        char currParent = (char)(((myChar + diff + 26) % 26) + 'a'); // 'a' + 30, then wrap back around to 'a' + 6
 
         // famous char values (Ascii table 0 <= x <= 127)
         int spaceAsInt = ' '; // 32

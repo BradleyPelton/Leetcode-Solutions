@@ -2,14 +2,7 @@ package contests.contests2024.lc0203.hard;
 
 
 
-// Unbelievable.
-// I just resubmitted my solution for mediumone and it was accepted first try
-// Accepted after 2 minutes.
-
-// First hard problem in a contest ever?
-// All 4 questions answered.
-
-
+// Accepted answer was retroactively marked as TLE
 
 class Solution {
     public int minimumTimeToInitialState(String word, int k) {

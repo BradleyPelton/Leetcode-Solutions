@@ -3,6 +3,7 @@ package _Study.Problems.courseSchedule;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -13,40 +14,44 @@ import java.util.Set;
  * 207. Course Schedule
  * https://leetcode.com/problems/course-schedule/description/
  *
- * Canonical Kahn's algorithm problem
+ * Canonical Topological Sort / Kahn's algorithm problem
+ *
  *
  */
 class Solution {
-    public boolean canFinish(int numCourses, int[][] prerequisites) { // Kahn's algorithm - 54%% runtime, 88%% memory
-        int[] inDegree = new int[numCourses];
-        Map<Integer, List<Integer>> adjacencyMap = new HashMap<>();
-        for (int[] edge : prerequisites) {
-            inDegree[edge[1]]++;
-            adjacencyMap.computeIfAbsent(edge[0], a -> new ArrayList<>()).add(edge[1]);
+    public boolean canFinish(int numCourses, int[][] prerequisites) { // Kahn's algorithm - 55% runtime, 30% memory
+        Map<Integer, List<Integer>> adjacencyList = new HashMap<>();
+        for (int i = 0; i < numCourses; i++) {
+            adjacencyList.put(i, new ArrayList<>());
         }
 
-        ArrayDeque<Integer> nodesWithZeroInDegree = new ArrayDeque<>();
+        int[] inDegree = new int[numCourses];
+        for (int[] prereq : prerequisites) {
+            inDegree[prereq[1]]++;
+            adjacencyList.get(prereq[0]).add(prereq[1]);
+        }
+
+        Deque<Integer> nodesWithZeroInDegree = new ArrayDeque<>();
         for (int i = 0; i < numCourses; i++) {
             if (inDegree[i] == 0) {
                 nodesWithZeroInDegree.add(i);
             }
         }
 
-        int countOfNodesWithZeroInDegree = 0;
+        int numberOfCompletedCourses = 0;
         while (!nodesWithZeroInDegree.isEmpty()) {
             int currNode = nodesWithZeroInDegree.remove();
-            countOfNodesWithZeroInDegree++;
-            if (adjacencyMap.containsKey(currNode)) {
-                for (int key : adjacencyMap.get(currNode)) {
-                    inDegree[key]--;
-                    if (inDegree[key] == 0) {
-                        nodesWithZeroInDegree.add(key);
-                    }
+            numberOfCompletedCourses++;
+
+            for (int neighbor : adjacencyList.get(currNode)) {
+                inDegree[neighbor]--;
+
+                if (inDegree[neighbor] == 0) {
+                    nodesWithZeroInDegree.add(neighbor);
                 }
-                // adjacencyMap.remove(currNode); - Slower to remove a key? Since there are no collisions, lookup is still O(1)
             }
         }
-        return countOfNodesWithZeroInDegree == numCourses;
+        return numberOfCompletedCourses == numCourses;
     }
 }
 

@@ -1,37 +1,59 @@
 package _Study.Problems.wordBreakTODO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * 139. Word Break
  * https://leetcode.com/problems/word-break/description/
  *
- *
- * // TODO  - DP bottom up
  * // TODO - BFS
  */
 class Solution {
     class TrieNode {
-        public Solution.TrieNode[] children;
-        public boolean endsWords;
+        public TrieNode[] children;
+        public boolean endsWord;
 
         public TrieNode() {
-            children = new Solution.TrieNode[26];
-            endsWords = false;
+            children = new TrieNode[26];
+            endsWord = false;
         }
     }
 
-    Solution.TrieNode root;
+    TrieNode root;
+    public boolean wordBreak(String s, List<String> wordDict) { // Bottom Up DP - 92% runtime, 75% memory
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[n] = true;
+
+        root = new TrieNode();
+        buildTrieStructure(wordDict);
+
+        for (int i = n - 1; i >= 0; i--) {
+            TrieNode currNode = root;
+            for (int j = i; j < n; j++) {
+                if (currNode.children[s.charAt(j) - 'a'] != null) {
+                    currNode = currNode.children[s.charAt(j) - 'a'];
+                    if (currNode.endsWord && dp[j + 1]) {
+                        dp[i] = true;
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+        return dp[0];
+    }
+
     Boolean[] dp;
     String s;
     int n;
-    public boolean wordBreak(String s, List<String> wordDict) { // Top Down DP with Trie - 91% runtime, 65% memory
+    public boolean wordBreakTOPDOWN(String s, List<String> wordDict) { // Top Down DP with Trie - 91% runtime, 65% memory
         this.s = s;
         n = s.length();
         dp = new Boolean[n];
-        root = new Solution.TrieNode();
+        root = new TrieNode();
         buildTrieStructure(wordDict);
         boolean ans = wordBreak(0);
         System.out.println(ans);
@@ -47,7 +69,7 @@ class Solution {
             return dp[index];
         }
 
-        Solution.TrieNode currNode = root;
+        TrieNode currNode = root;
         boolean isPossible = false;
         for (int i = index; i < n; i++) {
             if (currNode.children[s.charAt(i) - 'a'] == null) {
@@ -55,7 +77,7 @@ class Solution {
             } else {
                 currNode = currNode.children[s.charAt(i) - 'a'];
 
-                if (currNode.endsWords) {
+                if (currNode.endsWord) {
                     boolean truncate = wordBreak(i + 1);
                     if (truncate) {
                         isPossible = true;
@@ -71,14 +93,14 @@ class Solution {
 
     private void buildTrieStructure(List<String> words) {
         for (String word : words) {
-            Solution.TrieNode currNode = root;
+            TrieNode currNode = root;
             for (char c : word.toCharArray()) {
                 if (currNode.children[c - 'a'] == null) {
-                    currNode.children[c - 'a'] = new Solution.TrieNode();
+                    currNode.children[c - 'a'] = new TrieNode();
                 }
                 currNode = currNode.children[c - 'a'];
             }
-            currNode.endsWords = true;
+            currNode.endsWord = true;
         }
     }
 }
