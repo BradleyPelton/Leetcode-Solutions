@@ -4,14 +4,14 @@ package util;
  * Union Find (aka Disjoint set) is a data structure
  * used to efficiently determine graph connectivity (e.g. number of connected components)
  * <p>
- * There are many implementations of UnionFind. Some are optimized for search while some are optimized for insert.
+ * There are many implementations of UnionFind (QuickUnion, QuickFind, etc.).
+ * Some are optimized for search while some are optimized for insert.
  * Some variants store the direct parent of a node, while other variants store the ultimate parent.
  * <p>
  * Two Primary Methods:
  *      1. Find - return the root(parent???) node ((e.g. the group that the individual a belongs to. ))
  *      2. Union - union together two components. Change the parent node of one of the two inputs.
  * </p>
- *
  */
 public class UnionFind { // Boilerplate code for optimized Disjoint set data structure
     //********************** PATH COMPRESSION AND RANK OPTIMIZATIONS INCLUDED
