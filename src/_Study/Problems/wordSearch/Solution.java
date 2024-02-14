@@ -8,21 +8,30 @@ import java.util.Arrays;
  * 79. Word Search
  * https://leetcode.com/problems/word-search/description/
  *
- *  Great solution. 95% runtime, 63% memory
  */
 class Solution {
-    boolean ans = false;
+    char[][] board;
+    String word;
+    int m;
+    int n;
+    int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     public boolean exist(char[][] board, String word) {
-        OUTER_LOOP:
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
+        this.board = board;
+        this.word = word;
+        m = board.length;
+        n = board[0].length;
+
+        boolean ans = false;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
                 if (board[i][j] == word.charAt(0)) {
-                    board[i][j] = '-';
-                    search(board, word, i, j, 1);
-                    board[i][j] = word.charAt(0);
-                    if (ans) {
-                        break OUTER_LOOP;
+                    board[i][j] = '?';
+                    boolean localAns = wordExists(1, i, j);
+                    if (localAns) {
+                        ans = localAns;
+                        break;
                     }
+                    board[i][j] = word.charAt(0);
                 }
             }
         }
@@ -30,43 +39,28 @@ class Solution {
         return ans;
     }
 
-    private void search(char[][] board, String word, int currI, int currJ, int wordIndex) {
-        if (ans) {
-            return;
+    private boolean wordExists(int index, int i, int j) {
+        if (index == word.length()) {
+            return true;
         }
-        if (wordIndex == word.length()) {
-            ans = true;
-            return;
+        for (int[] dir : DIRS) {
+            int[] updatedCoord = {i + dir[0], j + dir[1]};
+            if (isValidCoordinate(updatedCoord[0], updatedCoord[1])) {
+                if (board[updatedCoord[0]][updatedCoord[1]] == word.charAt(index)) {
+                    board[updatedCoord[0]][updatedCoord[1]] = '?';
+                    boolean localAns = wordExists(index + 1, updatedCoord[0], updatedCoord[1]);
+                    if (localAns) {
+                        return localAns;
+                    }
+                    board[updatedCoord[0]][updatedCoord[1]] = word.charAt(index);
+                }
+            }
         }
+        return false;
+    }
 
-        char nextChar = word.charAt(wordIndex);
-        // LEFT
-        if (currJ > 0 && board[currI][currJ - 1] == nextChar) {
-            board[currI][currJ - 1] = '-';
-            search(board, word, currI, currJ - 1, wordIndex + 1);
-            board[currI][currJ - 1] = nextChar;
-        }
-
-        // RIGHT
-        if (currJ < board[0].length - 1 && board[currI][currJ + 1] == nextChar) {
-            board[currI][currJ + 1] = '-';
-            search(board, word, currI, currJ + 1, wordIndex + 1);
-            board[currI][currJ + 1] = nextChar;
-        }
-
-        // UP
-        if (currI > 0 && board[currI - 1][currJ] == nextChar) {
-            board[currI - 1][currJ] = '-';
-            search(board, word, currI - 1, currJ, wordIndex + 1);
-            board[currI - 1][currJ] = nextChar;
-        }
-
-        // DOWN
-        if (currI < board.length - 1 && board[currI + 1][currJ] == nextChar) {
-            board[currI + 1][currJ] = '-';
-            search(board, word, currI + 1, currJ, wordIndex + 1);
-            board[currI + 1][currJ] = nextChar;
-        }
+    private boolean isValidCoordinate(int i, int j) {
+        return i < m && i >= 0 && j >= 0 && j < n;
     }
 }
 

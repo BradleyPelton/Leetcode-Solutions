@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 class Solution {
     // NOTE: Greedy won't work. all evens and all odds won't work. Imagine 1,1,1,1,1,99999(odd),1,1,99999(even),1,1
-    public int robBottomUp(int[] nums) {
+    public int robBottomUp(int[] nums) { // DP - Bottom up - 100% runtime, 64% memory
         if (nums.length == 1) {
             return nums[0];
         }
