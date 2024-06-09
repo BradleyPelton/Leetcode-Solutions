@@ -12,38 +12,6 @@ import java.util.Set;
 class Solution {
     public long numberOfPairs(int[] nums1, int[] nums2, int k) {
         long ans = 0L;
-
-        // nums1[i] % (nums2[j] * k) == 0
-
-        // nums1[i] = a*b*c
-
-        Map<Integer, List<Integer>> primeMap = new HashMap<>();
-        for (int val : nums2) {
-            List<Integer> facts = primeFactors(val);
-
-            for (int fact : facts) {
-                primeMap.computeIfAbsent(fact, a -> new ArrayList<>()).add();
-            }
-
-        }
-
-        for (int i = 0; i < nums1.length; i++) {
-            if (nums1[i] % k != 0) {
-                continue;
-            }
-
-            int nums1Val = nums1[i] / k;
-
-            List<Integer> facts = primeFactors(nums1Val);
-            facts.add(1);
-            Set<Integer> uniqueCombos = uniqueDivisors(facts, nums1Val);
-
-            for (int val : uniqueCombos) {
-                ans += occMap.getOrDefault(val, 0);
-            }
-        }
-
-        System.out.println(ans);
         return ans;
     }
 
