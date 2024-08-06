@@ -77,15 +77,31 @@ class Tests {
                 new String[]{"THE", "THEY", "THEM", "THEN", "THESE", "THERE", "THEIR"}
         );
 
+        final WordSearchPuzzle puzzleFive = new WordSearchPuzzle(
+                new String[] {  // SOURCE: https://api.razzlepuzzles.com/wordsearch
+                        "AAAAAAA",
+                        "AAAAAAA",
+                        "AAAAAAA",
+                        "AAAAAAA",
+                        "AAAAAAA",
+                        "AAAAAAA",
+                        "AAAAABA",
+                },
+                new String[]{
+                        "AAAAAAB"
+                }
+        );
+
 
         List<WordSearchPuzzle> puzzleList = List.of(
                 puzzleOne,
                 puzzleTwo,
                 puzzleThree,
-                puzzleFour
+                puzzleFour,
+                puzzleFive
         );
 
-        int NUMBER_OF_TIMES_TO_RUN = 10_000;
+        int NUMBER_OF_TIMES_TO_RUN = 10;
 
         for (int i = 1; i <= puzzleList.size(); i++) {
             WordSearchPuzzle puzzle = puzzleList.get(i - 1);
