@@ -1,16 +1,25 @@
-package COMPSCIX404.FinalProject;
+package COMPSCIX404.FinalProjectCode_BradleyPelton;
 
 
-import COMPSCIX404.FinalProject.Utility.BasePuzzleSolver;
-import COMPSCIX404.FinalProject.Utility.Point;
-import COMPSCIX404.FinalProject.Utility.WordSearchPuzzle;
+import COMPSCIX404.FinalProjectCode_BradleyPelton.Utility.BasePuzzleSolver;
+import COMPSCIX404.FinalProjectCode_BradleyPelton.Utility.Point;
+import COMPSCIX404.FinalProjectCode_BradleyPelton.Utility.WordSearchPuzzle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.stream.Collectors;
 
+/**
+ * Solver class that implements the Brute Force Algorithm.
+ *
+ * <p>
+ *      This inefficient solver will iterate over the character grid,
+ *      check if a any words start with the current character at the grid
+ *      location, then generate all possible paths from the current character.
+ *      To prevent duplicate coordinate use, we have to maintain a list of
+ *      visited points.
+ * </p>
+ */
 public class BruteForceSolver extends BasePuzzleSolver {
     public BruteForceSolver(WordSearchPuzzle puzzle) { super(puzzle);}
 
@@ -32,8 +41,11 @@ public class BruteForceSolver extends BasePuzzleSolver {
                             for (List<Point> path : paths) {
                                 Point currCoordinate = path.get(path.size() - 1);
 
-                                for (int[] direction : DIRS) {
-                                    Point newCoordinate = new Point(currCoordinate.i + direction[0], currCoordinate.j + direction[1]);
+                                for (int[] direction : DIRECTIONS) {
+                                    Point newCoordinate = new Point(
+                                            currCoordinate.i + direction[0],
+                                            currCoordinate.j + direction[1]
+                                    );
                                     if (isValidCoordinate(newCoordinate)) {
                                         if (puzzle.characterGrid[newCoordinate.i][newCoordinate.j] == nextChar) {
                                             if (!pathContainsPoint(path, newCoordinate)) {
@@ -50,14 +62,14 @@ public class BruteForceSolver extends BasePuzzleSolver {
                                 continue WORD_LOOP;
                             }
                         }
-
-                        wordsFound.add(word); //
+                        wordsFound.add(word); // word was found
                     }
                 }
             }
         }
+        // Brute force finds duplicate words
+        wordsFound = wordsFound.stream().distinct().collect(Collectors.toList());
     }
-
 }
 
 

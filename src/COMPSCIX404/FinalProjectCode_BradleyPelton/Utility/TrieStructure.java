@@ -1,18 +1,22 @@
-package COMPSCIX404.FinalProject.Utility;
+package COMPSCIX404.FinalProjectCode_BradleyPelton.Utility;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
 
+/**
+ * Utility class for working with a Tree of TrieNodes.
+ */
 public class TrieStructure {
     public TrieNode root;
 
     public TrieStructure() {}; // Restrict constructor access. See builder pattern below
 
 
+    /**
+     * Add a word into the TrieNode
+     */
     private void addWord(String word) {
         TrieNode nextNode = root;
         for (int i = 0; i < word.length(); i++) {
@@ -26,6 +30,11 @@ public class TrieStructure {
     }
 
 
+    /**
+     * Builder pattern: Build a TrieStructure from
+     * the words provided. Static builder method instead of
+     * calling a constructor.
+     */
     public static TrieStructure buildTrie(String[] words) {
         TrieStructure structure = new TrieStructure();
         structure.root = new TrieNode();
@@ -35,6 +44,11 @@ public class TrieStructure {
         return structure;
     }
 
+    /**
+     * Builder pattern: Build a TrieStructure from
+     * the words stored in a file.
+     * Static builder method instead of calling a constructor.
+     */
     public static TrieStructure buildTrie(String filePath) {
         System.out.println("Starting build Trie from filePath");
         TrieStructure structure = new TrieStructure();
@@ -44,21 +58,18 @@ public class TrieStructure {
             while ((line = br.readLine()) != null) {
                 structure.addWord(line);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error thrown when attempting to read words file + " + e);
         }
-
-        System.out.println("done reading");
-        return null;
+        System.out.println("Finished reading words file");
+        return structure;
     }
 
     /**
      * Remove the word from the Trie. Remove any unused nodes after removing
      * the word.
-     *
-     * Stack approach.
+     * Stack approach. This is an optimization to speed up Trie read operations
+     * and to prevent duplicates words from being found.
      */
     public void removeWord(String word) {
         Stack<TrieNode> parentNodes = new Stack<>();

@@ -1,5 +1,8 @@
-package COMPSCIX404.FinalProject.Utility;
+package COMPSCIX404.FinalProjectCode_BradleyPelton.Utility;
 
+/**
+ * Basic "POJO" to represent a (x,y) coordinate
+ */
 public class Point {
     public int i;
     public int j;
@@ -14,11 +17,18 @@ public class Point {
         this.j = otherPoint.j; // COPY CONSTRUCTOR
     }
 
+    /**
+     * Move the direction represented by the vector
+     * int[] direction (e.g. int[] direction = {0,1})
+     */
     public void moveDirection(int[] direction) {
         i += direction[0];
         j += direction[1];
     }
 
+    /**
+     * Undo the move direction by inverting the direction
+     */
     public void undoMoveDirection(int[] direction) {
         i -= direction[0];
         j -= direction[1];

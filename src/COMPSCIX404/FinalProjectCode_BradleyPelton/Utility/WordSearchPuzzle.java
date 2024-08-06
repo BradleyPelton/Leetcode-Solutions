@@ -1,5 +1,10 @@
-package COMPSCIX404.FinalProject.Utility;
+package COMPSCIX404.FinalProjectCode_BradleyPelton.Utility;
 
+/**
+ * Simple class to hold the details of a specific puzzle.
+ * This class holds the grid of characteres as well as the
+ * expected words that should be found in the puzzle.
+ */
 public class WordSearchPuzzle {
     public char[][] characterGrid;
     public String[] ansWords;
@@ -9,6 +14,9 @@ public class WordSearchPuzzle {
         ansWords = words;
     }
 
+    /**
+     * Simple constructor to convert String[] letters to char[][]
+     */
     public WordSearchPuzzle(String[] letters, String[] words) {
         characterGrid = new char[letters.length][];
         for (int i = 0; i < letters.length; i++) {

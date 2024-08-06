@@ -1,19 +1,16 @@
-package COMPSCIX404.FinalProject;
+package COMPSCIX404.FinalProjectCode_BradleyPelton;
 
-import COMPSCIX404.FinalProject.Utility.TrieStructure;
-import COMPSCIX404.FinalProject.Utility.WordSearchPuzzle;
+import COMPSCIX404.FinalProjectCode_BradleyPelton.Utility.WordSearchPuzzle;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 class Tests {
     public static void main(String[] args) {
         final WordSearchPuzzle puzzleOne = new WordSearchPuzzle(
-                new String[]{
+                new String[] { // SOURCE: https://api.razzlepuzzles.com/wordsearch
                         "EZOOIWT",
                         "OPLRFAX",
                         "RRELWNE",
@@ -22,7 +19,7 @@ class Tests {
                         "TNORABB",
                         "STURSMA"
                 },
-                new String[]{
+                new String[] {
                         "BARON",
                         "BRAE",
                         "CELL",
@@ -39,7 +36,7 @@ class Tests {
         );
 
         final WordSearchPuzzle puzzleTwo = new WordSearchPuzzle(
-                new String[]{
+                new String[] {  // SOURCE: https://api.razzlepuzzles.com/wordsearch
                         "KPHGREDIWWS",
                         "NAYIHNSPDRU",
                         "WETFSIEOIMB",
@@ -71,25 +68,22 @@ class Tests {
                 }
         );
 
-        final WordSearchPuzzle puzzleThree = new WordSearchPuzzle( // TODO - DELETE ME
-                new char[][] {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}},
-                new String[]{"oath","eat",}
+        final WordSearchPuzzle puzzleThree = new WordSearchPuzzle( // Manually created
+                new char[][]{{'R','E','U','L'},{'N','D','Z','B'},{'E','E','R','G'}},
+                new String[]{"RED","BLUE","GREEN"}
         );
-        final WordSearchPuzzle puzzleFour = new WordSearchPuzzle( // TODO - DELETE ME
-                new char[][]{{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}},
-                new String[]{"oate","oath","eat"}
+        final WordSearchPuzzle puzzleFour = new WordSearchPuzzle( // Manually created
+                new char[][] {{'Z','N','I','R'},{'T','H','E','E'},{'Z','Y','M','S'}},
+                new String[]{"THE", "THEY", "THEM", "THEN", "THESE", "THERE", "THEIR"}
         );
+
 
         List<WordSearchPuzzle> puzzleList = List.of(
-//                puzzleOne,
-//                puzzleTwo,
-//                puzzleThree,
-//                puzzleFour
+                puzzleOne,
+                puzzleTwo,
+                puzzleThree,
+                puzzleFour
         );
-
-        TrieStructure.buildTrie("C:\\Users\\bradl\\Desktop\\berkeleyCourses\\DataStructuresAndAlgorithms\\finalProject\\allWords.md");
-
-
 
         int NUMBER_OF_TIMES_TO_RUN = 10_000;
 
@@ -97,7 +91,6 @@ class Tests {
             WordSearchPuzzle puzzle = puzzleList.get(i - 1);
 
             // BRUTE FORCE
-
             long bruteForceDurationSum = 0;
             for (int j = 0; j < NUMBER_OF_TIMES_TO_RUN; j++) {
                 long startTime = System.nanoTime();
@@ -131,12 +124,6 @@ class Tests {
             System.out.println("Trie puzzle=" + i + " trieAverageDuration              = " + trieAverageDuration);
 
         }
-    }
-
-    private static boolean stringArrayEqualsList(String[] stringArr, Set<String> stringList) {
-        List<String> setAsList = new ArrayList<>();
-        setAsList.addAll(stringList);
-        return stringArrayEqualsList(stringArr, setAsList);
     }
 
     private static boolean stringArrayEqualsList(String[] stringArr, List<String> stringList) {

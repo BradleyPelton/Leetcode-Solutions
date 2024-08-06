@@ -1,11 +1,15 @@
-package COMPSCIX404.FinalProject.Utility;
+package COMPSCIX404.FinalProjectCode_BradleyPelton.Utility;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Standard TrieNode implementation.
+ * This TrieNode is backed by a Map, not an array
+ */
 public class TrieNode {
     public boolean endsWord = false;
-    Map<Character, TrieNode> children;
+    Map<Character, TrieNode> children; // NOTE: Backed by Map, not an array.
 
     public TrieNode() {
         children = new HashMap<>();
