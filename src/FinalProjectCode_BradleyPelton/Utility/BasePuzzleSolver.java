@@ -1,4 +1,4 @@
-package COMPSCIX404.FinalProjectCode_BradleyPelton.Utility;
+package FinalProjectCode_BradleyPelton.Utility;
 
 import java.util.ArrayList;
 import java.util.List;

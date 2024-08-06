@@ -1,4 +1,4 @@
-package COMPSCIX404.FinalProjectCode_BradleyPelton.Utility;
+package FinalProjectCode_BradleyPelton.Utility;
 
 /**
  * Simple class to hold the details of a specific puzzle.

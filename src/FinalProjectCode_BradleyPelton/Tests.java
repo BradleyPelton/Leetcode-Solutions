@@ -1,6 +1,6 @@
-package COMPSCIX404.FinalProjectCode_BradleyPelton;
+package FinalProjectCode_BradleyPelton;
 
-import COMPSCIX404.FinalProjectCode_BradleyPelton.Utility.WordSearchPuzzle;
+import FinalProjectCode_BradleyPelton.Utility.WordSearchPuzzle;
 
 import java.util.Arrays;
 import java.util.Collections;
