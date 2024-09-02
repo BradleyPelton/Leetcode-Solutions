@@ -1,25 +1,18 @@
-package _Study.Problems.SortTODO;
+package _Study.Problems.sort;
 
 import java.util.Arrays;
 
-/**
- *
- *
- * Split an array into two groups:
- * 1. LEFT = Already sorted
- * 2. RIGHT = Unsorted
- *
- * One-by-one, take a new number from the right and "Insert" it into the sorted order of the left.
- */
-public class InsertionSort {
+public class SelectionSort {
     public static int[] arr;
     public static void sort() {
-        for (int i = 1; i < arr.length; i++) {
-            for (int j = i; j > 0; j--) {
-                if (arr[j] < arr[j-1]) {
-                    swap(j, j - 1);
+        for (int firstUnsortedIndex = 0; firstUnsortedIndex < arr.length; firstUnsortedIndex++) {
+            int minIndex = firstUnsortedIndex;
+            for (int j = firstUnsortedIndex + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]){
+                    minIndex = j;
                 }
             }
+            swap(firstUnsortedIndex, minIndex);
         }
     }
 
@@ -30,7 +23,7 @@ public class InsertionSort {
     }
 }
 
-class Tes {
+class Test {
     public static void main(String[] args) {
         BubbleSort.arr = new int[]{1,2,3,5,1,2,5,1,43,6,2};
         BubbleSort.sort();

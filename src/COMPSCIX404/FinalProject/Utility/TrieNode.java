@@ -1,4 +1,4 @@
-package FinalProjectCode_BradleyPelton.Utility;
+package COMPSCIX404.FinalProject.Utility;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package _Study.Problems.SortTODO;
+package _Study.Problems.sort;
 
 import java.util.Arrays;
 

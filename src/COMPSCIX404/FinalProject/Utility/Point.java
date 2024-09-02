@@ -1,4 +1,4 @@
-package FinalProjectCode_BradleyPelton.Utility;
+package COMPSCIX404.FinalProject.Utility;
 
 /**
  * Basic "POJO" to represent a (x,y) coordinate

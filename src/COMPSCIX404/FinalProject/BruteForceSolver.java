@@ -1,9 +1,9 @@
-package FinalProjectCode_BradleyPelton;
+package COMPSCIX404.FinalProject;
 
 
-import FinalProjectCode_BradleyPelton.Utility.BasePuzzleSolver;
-import FinalProjectCode_BradleyPelton.Utility.Point;
-import FinalProjectCode_BradleyPelton.Utility.WordSearchPuzzle;
+import COMPSCIX404.FinalProject.Utility.BasePuzzleSolver;
+import COMPSCIX404.FinalProject.Utility.Point;
+import COMPSCIX404.FinalProject.Utility.WordSearchPuzzle;
 
 import java.util.ArrayList;
 import java.util.List;
