@@ -20,11 +20,11 @@ class Solution {
                 {0,1,0,1,0,1,0,1}
         };
 
-        int coord1I = (int)(coordinate1.charAt(0) - 'a');
-        int coord1J = Integer.parseInt(String.valueOf(coordinate1.charAt(1))) - 1;
+        int coord1I = coordinate1.charAt(0) - 'a';
+        int coord1J = coordinate1.charAt(1) - '1';
 
-        int coord2I = (int)(coordinate2.charAt(0) - 'a');
-        int coord2J = Integer.parseInt(String.valueOf(coordinate2.charAt(1))) - 1;
+        int coord2I = coordinate2.charAt(0) - 'a';
+        int coord2J = coordinate2.charAt(1) - '1';
 
         int coord1Value = grid[coord1I][coord1J];
         int coord2Value = grid[coord2I][coord2J];

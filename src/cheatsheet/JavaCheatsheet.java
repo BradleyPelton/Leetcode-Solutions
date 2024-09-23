@@ -17,6 +17,7 @@ public class JavaCheatsheet {
         int n = 0;
         String word = "bob";
         String[] words = {"cat", "dog", "penguin"};
+        String[][] locations = {{"Earth","North America","South America"},{"North America","United States","Canada"},{"United States","New York","Boston"},{"Canada","Ontario","Quebec"},{"South America","Brazil"}};
         String sentenceStr = "bob is a cat";
         int val = 42;
         int diff = 17;
@@ -119,6 +120,15 @@ public class JavaCheatsheet {
                         .collect(Collectors.toList()))
                 .collect(Collectors.toList());
 
+        // String[][] -> List<List<String>>
+        List<List<String>> dumb2 = Arrays.stream(new String[][]{{"bob", "alice"},{"fred", "steve"}})
+                .map(i -> Arrays.stream(i).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+
+        // List<List<Integer>> -> int[][]
+        // SEE ABOVE?
+
+
 // =====================================================================================================================
 // =====================================================================================================================
 // =====================================================================================================================
@@ -155,7 +165,9 @@ public class JavaCheatsheet {
 // =====================================================================================================================
 // =====================================================================================================================
         // char
+
         // char -> int
+        // char -> digit
         // '5' -> 5
         char c = '5';
         int cAsInt = '5' - '0';
