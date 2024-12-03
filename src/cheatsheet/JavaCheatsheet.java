@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class JavaCheatsheet {
     public static void main(String[] args) {
         int n = 0;
+        int target = 42;
         String word = "bob";
         String[] words = {"cat", "dog", "penguin"};
         String[][] locations = {{"Earth","North America","South America"},{"North America","United States","Canada"},{"United States","New York","Boston"},{"Canada","Ontario","Quebec"},{"South America","Brazil"}};
@@ -129,11 +130,11 @@ public class JavaCheatsheet {
         // SEE ABOVE?
 
 
+
 // =====================================================================================================================
 // =====================================================================================================================
 // =====================================================================================================================
         // Arrays
-
         if (Arrays.binarySearch(nums, val) >= 0) {n++;}
 
         // binary insert , binaryInsert
@@ -149,6 +150,21 @@ public class JavaCheatsheet {
 
         // flatmap 2d array to 1d array
 
+        // Binary search*, binary search left, Binary search duplicate elements, left-most insertion point
+//        public static int binarySearchLeft(int[] nums, target) {
+            int left = 0;
+            int right = nums.length;
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (nums[mid] >= target) {
+                    right = mid;
+                } else {
+                    left = mid + 1;
+                }
+            }
+//            return left;
+//        }
+
 // =====================================================================================================================
 // =====================================================================================================================
 // =====================================================================================================================
@@ -160,6 +176,7 @@ public class JavaCheatsheet {
         String toString = sb.toString();
         sb.charAt(4);
         sb.deleteCharAt(4);
+        sb.setCharAt(3, 'a');
         
 // =====================================================================================================================
 // =====================================================================================================================
